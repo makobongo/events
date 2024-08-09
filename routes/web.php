@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 Route::post('/events', [EventController::class , 'store']);
 Route::patch('/events/{event}', [EventController::class , 'update']);
+Route::post('/publisher', [PublisherController::class, 'store']);
