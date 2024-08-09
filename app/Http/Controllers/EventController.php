@@ -15,4 +15,13 @@ class EventController extends Controller
         ]);
         Event::create($data);
     }
+
+    public function update(Event $event) {
+        $data = request()->validate([
+            'title' => 'required',
+            'publisher' => 'required'
+        ]);
+
+        $event->update($data);
+    }
 }

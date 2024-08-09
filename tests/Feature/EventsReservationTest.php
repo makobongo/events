@@ -28,14 +28,45 @@ class EventsReservationTest extends TestCase
     /**
      * @test
      */
-    // public function a_title_is_required()
-    // {
-    //     $this->withoutExceptionHandling();
+    public function a_title_is_required()
+    {
+        $response = $this->post('/events', [
+            'title' => '',
+            'publisher' => 'james hendrix'
+        ]);
+        $response->assertSessionHasErrors('title');
+    }
 
-    //     $response = $this->post('/events', [
-    //         'title' => '',
-    //         'publisher' => 'makobongo'
-    //     ]);
-    //     $response->assertSessionHasErrors();
-    // }
+    /**
+     * @test
+     */
+    public function a_publisher_is_required()
+    {
+        $response = $this->post('/events', [
+            'title' => 'meetings in the hotel on 4th',
+            'publisher' => ''
+        ]);
+        $response->assertSessionHasErrors('publisher');
+    }
+
+    /**
+     * @test
+     */
+    public function event_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->post('/events', [
+            'title' => 'one more',
+            'publisher' => 'Tom Okeyo'
+        ]);
+        $event = Event::first();
+        $response = $this->patch('/events/'.$event->id, [
+            'title' => 'second more',
+            'publisher' => 'Valary Ogada'
+        ]);
+
+        $this->assertEquals('second more', Event::first()->title);
+        $this->assertEquals('Valary Ogada', Event::first()->publisher);
+    }
 }
