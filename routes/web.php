@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/events', [EventController::class , 'store']);
+Route::patch('/events/{event}', [EventController::class , 'update']);
