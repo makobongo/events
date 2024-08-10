@@ -9,10 +9,10 @@ class PublisherController extends Controller
 {
     public function store()
     {
-        Publisher::create([
-            'fname' => request('fname'),
-            'sname' => request('sname'),
-            'dob' => request('dob')
+        $data = request()->validate([
+            'fname'=>'required',
+            'sname'=>'required'
         ]);
+        Publisher::create($data);
     }
 }

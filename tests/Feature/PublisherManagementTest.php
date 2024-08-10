@@ -26,4 +26,16 @@ class PublisherManagementTest extends TestCase
 
         $this->assertCount(1, Publisher::all());
     }
+
+    /**
+     * @test
+     */
+    public function publisher_first_and_second_name_is_required()
+    {
+        $response = $this->post('/publisher',[
+            'fname' => '',
+            'sname' => ''
+        ]);
+        $response->assertSessionHasErrors(['fname','sname']);
+    }
 }
