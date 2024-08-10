@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::post('/events', [EventController::class , 'store']);
 Route::patch('/events/{event}', [EventController::class , 'update']);
 Route::post('/publisher', [PublisherController::class, 'store']);
+Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
