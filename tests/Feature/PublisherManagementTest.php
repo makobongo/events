@@ -16,8 +16,6 @@ class PublisherManagementTest extends TestCase
     public function a_publisher_can_be_created()
     {
 
-        $this->withoutExceptionHandling();
-
         $this->post('/publisher', [
             'fname' => 'Jason',
             'sname' => 'brown',
@@ -32,10 +30,33 @@ class PublisherManagementTest extends TestCase
      */
     public function publisher_first_and_second_name_is_required()
     {
-        $response = $this->post('/publisher',[
+        $response = $this->post('/publisher', [
             'fname' => '',
             'sname' => ''
         ]);
-        $response->assertSessionHasErrors(['fname','sname']);
+        $response->assertSessionHasErrors(['fname', 'sname']);
+    }
+
+    /**
+     * @test
+     */
+    public function publisher_can_be_updated()
+    {
+        $this->post('/publisher', [
+            'fname' => 'Jason',
+            'sname' => 'brown',
+            'dob' => '05/14/1990'
+        ]);
+
+        $publisher = Publisher::first();
+        $this->patch("/publisher/" . $publisher->id, [
+            'fname' => 'osteve',
+            'sname' => 'makobongo',
+            'dob' => '05/14/1900'
+        ]);
+
+        $this->assertEquals('osteve', Publisher::first()->fname);
+        $this->assertEquals('makobongo', Publisher::first()->sname);
+
     }
 }
