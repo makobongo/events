@@ -1,0 +1,16 @@
+name: events
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: events steps
+        run: echo "hello testing"
