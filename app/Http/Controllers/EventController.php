@@ -17,7 +17,7 @@ class EventController extends Controller
     {
 
         $event->update($this->validateRequest());
-        return redirect('/events/' . $event->id);
+        return redirect($event->path());
     }
 
     public function destroy(Event $event)
