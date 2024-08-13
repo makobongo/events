@@ -2,8 +2,7 @@ name: events
 
 on:
   push:
-    branches:
-      - 'main'
+    branches: ['main', 'osteve']
   pull_request:
     branches:
       - 'main'
