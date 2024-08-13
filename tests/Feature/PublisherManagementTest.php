@@ -49,7 +49,7 @@ class PublisherManagementTest extends TestCase
         ]);
 
         $publisher = Publisher::first();
-        $this->patch("/publisher/" . $publisher->id, [
+        $response = $this->patch("/publisher/" . $publisher->id, [
             'fname' => 'osteve',
             'sname' => 'makobongo',
             'dob' => '05/14/1900'
@@ -57,6 +57,7 @@ class PublisherManagementTest extends TestCase
 
         $this->assertEquals('osteve', Publisher::first()->fname);
         $this->assertEquals('makobongo', Publisher::first()->sname);
+        $response->assertRedirect('/publisher/'.$publisher->id);
 
     }
 }
