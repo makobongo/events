@@ -15,8 +15,6 @@ class EventsReservationTest extends TestCase
      */
     public function event_can_be_added_to_calender()
     {
-
-        $this->withoutExceptionHandling();
         $response = $this->post('/events', [
             'title' => 'meeting on the lakeside',
             'publisher' => 'makobongo'
@@ -54,8 +52,6 @@ class EventsReservationTest extends TestCase
      */
     public function event_can_be_updated()
     {
-        $this->withoutExceptionHandling();
-
         $this->post('/events', [
             'title' => 'one more',
             'publisher' => 'Tom Okeyo'
