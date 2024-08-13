@@ -15,6 +15,7 @@ class PublisherController extends Controller
     public function update(Publisher $publisher)
     {
         $publisher->update($this->validateRequest());
+        return redirect($publisher->path());
     }
 
     protected function validateRequest()

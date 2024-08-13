@@ -9,4 +9,8 @@ class Event extends Model
 {
     use HasFactory;
     protected $fillable = ['title','publisher'];
+
+    public function path(){
+        return '/events/' . $this->id;
+    }
 }

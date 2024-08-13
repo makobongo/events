@@ -10,4 +10,8 @@ class Publisher extends Model
     use HasFactory;
 
     protected $fillable = ['fname','sname','dob'];
+
+    public function path(){
+        return '/publisher/'.$this->id;
+    }
 }
