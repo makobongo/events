@@ -9,23 +9,14 @@ class EventController extends Controller
 {
     public function store()
     {
-        $data = request()->validate([
-            'title' => 'required',
-            'publisher' => 'required'
-        ]);
-        Event::create($data);
+        Event::create($this->validateRequest());
         return redirect('/events');
     }
 
     public function update(Event $event)
     {
-        $data = request()->validate([
-            'title' => 'required',
-            'publisher' => 'required'
-        ]);
 
-        $event->update($data);
-
+        $event->update($this->validateRequest());
         return redirect('/events/' . $event->id);
     }
 
@@ -33,5 +24,13 @@ class EventController extends Controller
     {
         $event->delete();
         return redirect('/events');
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'publisher' => 'required'
+        ]);
     }
 }
