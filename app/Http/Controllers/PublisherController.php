@@ -9,20 +9,19 @@ class PublisherController extends Controller
 {
     public function store()
     {
-        $data = request()->validate([
-            'fname' => 'required',
-            'sname' => 'required'
-        ]);
-        Publisher::create($data);
+        Publisher::create($this->validateRequest());
     }
 
     public function update(Publisher $publisher)
     {
-        $data = request()->validate([
+        $publisher->update($this->validateRequest());
+    }
+
+    protected function validateRequest()
+    {
+        return  request()->validate([
             'fname' => 'required',
             'sname' => 'required'
         ]);
-
-        $publisher->update($data);
     }
 }
