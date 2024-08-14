@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Event;
 use Tests\TestCase;
 
-class EventsReservationTest extends TestCase
+class EventsManagementTest extends TestCase
 {
     use RefreshDatabase;
     /**
