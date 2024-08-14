@@ -16,11 +16,7 @@ class PublisherManagementTest extends TestCase
     public function a_publisher_can_be_created()
     {
 
-        $this->post('/publisher', [
-            'fname' => 'Jason',
-            'sname' => 'brown',
-            'dob' => '05/14/1990'
-        ]);
+        $this->post('/publisher', $this->publisherData());
 
         $this->assertCount(1, Publisher::all());
     }
@@ -30,10 +26,7 @@ class PublisherManagementTest extends TestCase
      */
     public function publisher_first_and_second_name_is_required()
     {
-        $response = $this->post('/publisher', [
-            'fname' => '',
-            'sname' => ''
-        ]);
+        $response = $this->post('/publisher', array_merge($this->publisherData(), ['fname'=>'','sname'=>'']));
         $response->assertSessionHasErrors(['fname', 'sname']);
     }
 
@@ -42,11 +35,7 @@ class PublisherManagementTest extends TestCase
      */
     public function publisher_can_be_updated()
     {
-        $this->post('/publisher', [
-            'fname' => 'Jason',
-            'sname' => 'brown',
-            'dob' => '05/14/1990'
-        ]);
+        $this->post('/publisher', $this->publisherData());
 
         $publisher = Publisher::first();
         $response = $this->patch("/publisher/" . $publisher->id, [
@@ -57,7 +46,18 @@ class PublisherManagementTest extends TestCase
 
         $this->assertEquals('osteve', Publisher::first()->fname);
         $this->assertEquals('makobongo', Publisher::first()->sname);
-        $response->assertRedirect('/publisher/'.$publisher->id);
+        $response->assertRedirect('/publisher/' . $publisher->id);
+    }
 
+    /**
+     * test
+     */
+    private function publisherData()
+    {
+        return [
+            'fname' => 'Jason',
+            'sname' => 'brown',
+            'dob' => '05/14/1990'
+        ];
     }
 }
