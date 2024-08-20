@@ -23,3 +23,6 @@ Route::patch('/events/{event}', [EventController::class , 'update']);
 Route::delete('/events/{event}', [EventController::class , 'destroy']);
 Route::post('/publisher', [PublisherController::class, 'store']);
 Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
