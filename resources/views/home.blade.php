@@ -1,23 +1,29 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@include('sections.intro')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<main id="main">
+  @include('sections.about')
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  @include('sections.speakers')
+
+  @include('sections.schedule')
+
+  @include('sections.venues')
+
+  @include('sections.hotels')
+
+  @include('sections.gallery')
+
+  @include('sections.sponsors')
+
+  @include('sections.faq')
+
+  @include('sections.subscribe')
+
+  @include('sections.buy_ticket')
+
+  @include('sections.contact')
+</main>
 @endsection
