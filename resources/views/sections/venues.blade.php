@@ -1,0 +1,34 @@
+<section id="venue" class="wow fadeInUp">
+    <div class="container-fluid">
+      <div class="section-header">
+        <h2>Event Venue</h2>
+        <p>Event venue location info and gallery</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 venue-map">
+        <iframe src="#" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+
+      <div class="col-lg-6 venue-info">
+        <div class="row justify-content-center">
+          <div class="col-11 col-lg-8">
+            <h3>vennnue</h3>
+            <p>ggggggggg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid venue-gallery-container">
+      <div class="row no-gutters">
+            <div class="col-lg-3 col-md-4">
+              <div class="venue-gallery">
+                <a href="#" class="venobox" data-gall="venue-gallery">
+                  <img src="#" alt="" class="img-fluid">
+                </a>
+              </div>
+            </div>
+      </div>
+    </div>
+</section>
