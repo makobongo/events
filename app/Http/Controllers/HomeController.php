@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amenity;
 use App\Models\Price;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $prices = Price::all();
-        return view('home', ['prices'=>$prices]);
+        $prices = Price::with('amenities')->get();
+        $amenities = Amenity::with('prices')->get();
+        return view('home', ['prices'=>$prices, 'amenities'=>$amenities]);
     }
 }
