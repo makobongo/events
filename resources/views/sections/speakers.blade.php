@@ -6,48 +6,28 @@
     </div>
 
     <div class="row">
+      @foreach($speakers as $speaker)
         <div class="col-lg-4 col-md-6">
           <div class="speaker">
-            <img src="#" alt="alt" class="img-fluid">
+            <img src="{{ asset ('img/placeholder.svg')}}" alt="{{ $speaker->name }}" class="img-fluid">
             <div class="details">
-              <h3><a href="#">mr black</a></h3>
-              <p>drink enthusiast</p>
+              <h3><a href="#">{{ $speaker->name }}</a></h3>
+              <p>{{ $speaker->description }}</p>
               <div class="social">
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                @if($speaker->twitter)
+                  <a href="{{ $speaker->twitter }}"><i class="fa fa-twitter"></i></a>
+                @endif
+                @if($speaker->facebook)
+                  <a href="{{ $speaker->facebook }}"><i class="fa fa-facebook"></i></a>
+                @endif
+                @if($speaker->linkedin)
+                  <a href="{{ $speaker->linkedin }}"><i class="fa fa-linkedin"></i></a>
+                @endif
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="speaker">
-            <img src="#" alt="alt" class="img-fluid">
-            <div class="details">
-              <h3><a href="#">mr black</a></h3>
-              <p>drink enthusiast</p>
-              <div class="social">
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="speaker">
-            <img src="#" alt="alt" class="img-fluid">
-            <div class="details">
-              <h3><a href="#">mr black</a></h3>
-              <p>drink enthusiast</p>
-              <div class="social">
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+      @endforeach
     </div>
   </div>
 
