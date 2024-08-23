@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Amenity;
 use App\Models\Price;
+use App\Models\Speaker;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,6 +29,8 @@ class HomeController extends Controller
     {
         $prices = Price::with('amenities')->get();
         $amenities = Amenity::with('prices')->get();
-        return view('home', ['prices'=>$prices, 'amenities'=>$amenities]);
+        $venues = Venue::all();
+        $speakers = Speaker::all();
+        return view('home', ['prices'=>$prices, 'amenities'=>$amenities,'venues'=>$venues, 'speakers'=>$speakers]);
     }
 }
