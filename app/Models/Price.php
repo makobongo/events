@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Price extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -20,4 +24,9 @@ class Price extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function amenities()
+    {
+        return $this->belongsToMany(Amenity::class);
+    }
 }
