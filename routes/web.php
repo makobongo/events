@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::patch('/events/{event}', [EventController::class , 'update']);
 Route::delete('/events/{event}', [EventController::class , 'destroy']);
 Route::post('/publisher', [PublisherController::class, 'store']);
 Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
+Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
