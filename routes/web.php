@@ -23,7 +23,9 @@ Route::patch('/events/{event}', [EventController::class , 'update']);
 Route::delete('/events/{event}', [EventController::class , 'destroy']);
 Route::post('/publisher', [PublisherController::class, 'store']);
 Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
-Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
+#Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
+#Route::get('/tokens', [TicketController::class, 'generateAccesstoken']);
+Route::post('/initiate_payment', [TicketController::class, 'initiatePayment'])->name('ticket.store');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
