@@ -51,7 +51,7 @@ class TicketController extends Controller
         // // Format the phone number to Intl format
         $phone = sprintf('254%s', substr(request()->phone, 1, 9));
 
-        $price = (float)request()->ticket_price;
+        $price = (float)request()->ticket_price*(int)request()->number_of_tickets;
         // // Generate an access token
         $accessToken = $this->generateAccesstoken();
         // // Build the URL for the lnmo endpoint
