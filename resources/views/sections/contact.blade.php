@@ -13,7 +13,7 @@
         <div class="contact-address">
           <i class="ion-ios-location-outline"></i>
           <h3>Address</h3>
-          <address>addddrrrrrrrrr</address>
+          <address>00100, Nairobi</address>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
         <div class="contact-phone">
           <i class="ion-ios-telephone-outline"></i>
           <h3>Phone Number</h3>
-          <p><a href="tel:0756787777777">0715096287776666</a></p>
+          <p><a href="tel:0000000000">0000000000</a></p>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
         <div class="contact-email">
           <i class="ion-ios-email-outline"></i>
           <h3>Email</h3>
-          <p><a href="mailto:info@sixx.legal">sixx@sixx.legal}</a></p>
+          <p><a href="mailto:info@sixx.legal">sixx@sixx.legal</a></p>
         </div>
       </div>
 
