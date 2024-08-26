@@ -42,18 +42,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="#">
+          <form method="POST" action="{{ route('ticket.store') }}">
+            @csrf
             <div class="form-group">
-              <input type="text" class="form-control" name="your-name" placeholder="Your Name">
+              <input type="text" class="form-control" name="name" placeholder="Your Name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="your-email" placeholder="Your Email">
+              <input type="text" class="form-control" name="phone" placeholder="Your Phone Number">
             </div>
             <div class="form-group">
-              <select id="ticket-type" name="ticket-type" class="form-control" >
+              <select id="ticket-type" name="ticket_name" class="form-control" >
                 <option value="">-- Select Your Ticket Type --</option>
                 @foreach($prices as $price)
-                  <option value="{{ Str::slug($price->name) }}">{{ $price->name }}</option>
+                  <option value="{{ number_format($price->price) }}">{{ $price->name }}</option>
                 @endforeach
               </select>
             </div>
