@@ -48,13 +48,13 @@
               <input type="text" class="form-control" name="name" placeholder="Your Name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="phone" placeholder="Your Phone Number">
+              <input type="number" class="form-control" name="phone" placeholder="Your Phone Number">
             </div>
             <div class="form-group">
-              <select id="ticket-type" name="ticket_name" class="form-control" >
+              <select id="ticket-type" name="ticket_price" class="form-control" >
                 <option value="">-- Select Your Ticket Type --</option>
                 @foreach($prices as $price)
-                  <option value="{{ number_format($price->price) }}">{{ $price->name }}</option>
+                  <option value="{{ $price->price }}">{{ $price->name }}</option>
                 @endforeach
               </select>
             </div>
