@@ -25,7 +25,8 @@ Route::post('/publisher', [PublisherController::class, 'store']);
 Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
 #Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
 #Route::get('/tokens', [TicketController::class, 'generateAccesstoken']);
-Route::post('/initiate_payment', [TicketController::class, 'initiatePayment'])->name('ticket.store');
+Route::post('/initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])->name('ticket.store');
+Route::post('/stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
