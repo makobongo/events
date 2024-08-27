@@ -13,12 +13,11 @@ class GallariesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // $gallery = Gallery::create([
-        //     'name' => 'Event'
-        // ]);
         foreach(range(1,8) as $id)
         {
-            Gallery::create($id);
+            Gallery::create([
+                'name' => $id.'.jpg'
+            ]);
         }
     }
 }
