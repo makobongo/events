@@ -45,10 +45,10 @@
             <form method="POST" action="{{ route('ticket.store') }}">
               @csrf
               <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Your Name">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" name="phone" placeholder="Your Phone Number">
+                <input type="number" class="form-control" name="phone" placeholder="Phone Number" required>
               </div>
               <div class="form-group">
                 @include('partials.terms')
@@ -65,7 +65,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <select id="ticket-type" name="ticket_price" class="form-control">
+                <select id="ticket-type" name="ticket_price" class="form-control" required>
                   <option value="">-- Select Your Ticket Type --</option>
                   @foreach($prices as $price)
                   <option value="{{ $price->price }}">{{ $price->name }}</option>
