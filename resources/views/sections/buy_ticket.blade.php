@@ -15,11 +15,11 @@
             <h6 class="card-price text-center">Ksh {{ number_format($price->price) }}</h6>
             <hr>
             <ul class="fa-ul">
-            @foreach($amenities as $amenity)
+              @foreach($amenities as $amenity)
               <li @if(!$price->amenities->contains($amenity->id))class="text-muted"@endif>
                 <span class="fa-li"><i class="fa fa-{{ $price->amenities->contains($amenity->id) ? 'check' : 'times' }}"></i></span>{{ $amenity->name }}
               </li>
-            @endforeach
+              @endforeach
             </ul>
             <hr>
             <div class="text-center">
@@ -33,38 +33,52 @@
 
     <!-- Modal Order Form -->
     <div id="buy-ticket-modal" class="modal fade">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Buy Tickets</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="{{ route('ticket.store') }}">
-            @csrf
-            <div class="form-group">
-              <input type="text" class="form-control" name="name" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="phone" placeholder="Your Phone Number">
-            </div>
-            <div class="form-group">
-              <select id="ticket-type" name="ticket_name" class="form-control" >
-                <option value="">-- Select Your Ticket Type --</option>
-                @foreach($prices as $price)
-                  <option value="{{ number_format($price->price) }}">{{ $price->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn">Buy Now</button>
-            </div>
-          </form>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Buy Tickets</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{{ route('ticket.store') }}">
+              @csrf
+              <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <input type="number" class="form-control" name="phone" placeholder="Phone Number" required>
+              </div>
+              <div class="form-group">
+                @include('partials.terms')
+              </div>
+              <div class="form-group">
+                <!-- <input type="number" class="form-control" name="number_of_tickets" placeholder="Number of Tickets"> -->
+                <label>Select Number of Ticket you are purchasing <b>(default is 1)</b></label>
+                <select name="number_of_tickets" class="form-control">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select id="ticket-type" name="ticket_price" class="form-control" required>
+                  <option value="">-- Select Your Ticket Type --</option>
+                  @foreach($prices as $price)
+                  <option value="{{ $price->price }}">{{ $price->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn">Buy Now</button>
+              </div>
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 </section>

@@ -4,8 +4,8 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-info">
-          <img src="img/logo.png" alt="TheEvenet">
-          <p>{{ $settings['footer_description'] ?? '' }}</p>
+          <!-- <img src="img/logo.png" alt="TheEvenet"> -->
+          <h1 style="color:white;">{{ env('APP_NAME', 'The Event') }}</p>
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
