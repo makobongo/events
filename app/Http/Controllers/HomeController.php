@@ -6,6 +6,7 @@ use App\Models\Amenity;
 use App\Models\Gallery;
 use App\Models\Price;
 use App\Models\Speaker;
+use App\Models\Sponsor;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class HomeController extends Controller
         $venues = Venue::all();
         $speakers = Speaker::all();
         $galleries = Gallery::all();
-        return view('home', ['prices'=>$prices, 'amenities'=>$amenities,'venues'=>$venues, 'speakers'=>$speakers, 'galleries'=>$galleries]);
+        $sponsors = Sponsor::all();
+        return view('home', ['prices'=>$prices, 'amenities'=>$amenities,'venues'=>$venues, 'speakers'=>$speakers, 'galleries'=>$galleries, 'sponsors'=>$sponsors]);
     }
 }
