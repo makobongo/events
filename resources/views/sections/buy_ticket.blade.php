@@ -51,6 +51,9 @@
                 <input type="number" class="form-control" name="phone" placeholder="Your Phone Number">
               </div>
               <div class="form-group">
+                @include('partials.terms')
+              </div>
+              <div class="form-group">
                 <!-- <input type="number" class="form-control" name="number_of_tickets" placeholder="Number of Tickets"> -->
                 <label>Select Number of Ticket you are purchasing <b>(default is 1)</b></label>
                 <select name="number_of_tickets" class="form-control">
