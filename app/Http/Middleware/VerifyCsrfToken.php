@@ -13,6 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/initiate_payment',
-        '/stk_callback'
+        '/stk_callback',
+        '/confirmation',
+        '/validation'
     ];
 }
