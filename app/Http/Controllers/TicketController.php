@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendMail;
+use App\Models\Payment;
 use App\Models\Ticket;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -95,6 +99,53 @@ class TicketController extends Controller
         // return $isSuccessful;
     }
 
+    public function mpesaConfirmation(){
+        $content = json_decode(request()->getContent(), true);
+        if (!is_null($content)) {
+            Payment::create([
+                'TransactionType' => $content['TransactionType'],
+                'TransID' => $content['TransID'],
+                'TransTime' => date('Y-m-d H:i:s', strtotime($content['TransTime'])),
+                'TransAmount' => $content['TransAmount'],
+                'BusinessShortCode' => $content['BusinessShortCode'],
+                'BillRefNumber' => $content['BillRefNumber'],
+                'InvoiceNumber' => $content['InvoiceNumber'],
+                'OrgAccountBalance' => $content['OrgAccountBalance'],
+                'ThirdPartyTransID' => $content['ThirdPartyTransID'],
+                'MSISDN' => $content['MSISDN'],
+                'FirstName' => $content['FirstName'],
+                'MiddleName' => $content['MiddleName'],
+                'LastName' => $content['LastName'],
+            ]);
+            //sending email
+            Mail::to('itsupport@sixx-spirits.com')
+                // ->cc(['finance@sixx-spirits.com', 'info@sixx-spirits.com'])
+                ->send(new sendMail($content));
+            return response()->json([
+                'msg' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'msg' => 'data not available!'
+            ]);
+        }
+    }
+
+    public function mpesaValidation()
+    {
+        $result_code = "0";
+        $result_validation = "Accepted";
+        return $this->createValidationResponse($result_code, $result_validation);
+    }
+    public function createValidationResponse($result_code, $result_validation)
+    {
+        $result = json_encode(['ResultCode' => $result_code, 'ResultDesc' => $result_validation]);
+        $response = new Response();
+        $response->headers->set("Content-Type", "application/json; charset-utf-8");
+        $response->setContent($result);
+        return $response;
+    }
+
     /**
      * Process the callback data sent to this endpoint
      */
@@ -102,37 +153,5 @@ class TicketController extends Controller
     {
         Log::info('STK Push endpoint hit');
         Log::info(request()->all());
-        // $callbackData = $response->Body->stkCallback;
-        // $merchantRequestID = $callbackData->MerchantRequestID;
-        // $checkoutRequestID = $callbackData->CheckoutRequestID;
-        // $resultCode = $callbackData->ResultCode;
-
-        // // TODO perform payment validation here
-
-
-        // // Check if the transaction was successful on mpesa.
-        // // Successful transactions return a status code of 0
-        // if ($resultCode != 0) {
-        //     try {
-        //         // TODO update payments data here for failed transactions. Also reject the payment
-        //     } catch (Exception $e) {
-        //         throw new Exception($e->getMessage());
-        //     }
-        // }
-
-        // // Extract the data for successful transactions
-        // $callbackMetadata = $callbackData->CallbackMetadata;
-        // $transactionID = $callbackMetadata->Item[1]->Value;
-
-        // // TODO Check for existing transaction ID
-        // if ($this->transactionIDExists($transactionID)) {
-        //     // Reject transaction
-        //     return;
-        // }
-
-        // return response()->json([
-        //     "ResultCode" => 0,
-        //     "ResultDesc" => "Success",
-        // ], Response::HTTP_OK)->header('Content-Type', 'application/json');
     }
 }
