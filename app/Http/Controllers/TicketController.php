@@ -119,7 +119,7 @@ class TicketController extends Controller
             ]);
             //sending email
             Mail::to('itsupport@sixx-spirits.com')
-                // ->cc(['finance@sixx-spirits.com', 'info@sixx-spirits.com'])
+                // ->cc(['finance@sixx-spirits.com'])
                 ->send(new sendMail($content));
             return response()->json([
                 'msg' => 'success'
