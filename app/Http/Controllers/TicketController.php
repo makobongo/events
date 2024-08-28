@@ -116,7 +116,7 @@ class TicketController extends Controller
                 'FirstName' => $content['FirstName'],
                 'MiddleName' => $content['MiddleName'],
                 'LastName' => $content['LastName'],
-                ''
+                'ticket_is_valid' => true
             ]);
             //sending email
             Mail::to('itsupport@sixx-spirits.com')

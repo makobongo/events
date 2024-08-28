@@ -29,6 +29,7 @@ class Payment extends Model
         'MiddleName',
         'LastName',
         'TransAmount',
-        'OrgAccountBalance'
+        'OrgAccountBalance',
+        'ticket_is_valid',
     ];
 }
