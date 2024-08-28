@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class TicketController extends Controller
 {
@@ -85,7 +86,9 @@ class TicketController extends Controller
             'TransactionDesc' => 'Payment For SIXX SPIRITS GOODS.'
         ])->json();
 
-        return $response;
+       return $this->generatePDF();
+        // return $response;
+        // return redirect()->back();
 
         // Keep track of the request status
         // $isSuccessful = false;
@@ -153,5 +156,17 @@ class TicketController extends Controller
     {
         Log::info('STK Push endpoint hit');
         Log::info(request()->all());
+    }
+
+    public function generatePDF()
+    {
+        $data = [
+            'title' => 'SIXX',
+            'date' => date('m/d/Y'),
+        ];
+
+        $pdf = PDF::loadView('pdf.ticket', $data);
+
+        return $pdf->download('document.pdf');
     }
 }
