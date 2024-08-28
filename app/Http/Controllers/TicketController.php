@@ -119,10 +119,22 @@ class TicketController extends Controller
                 'ticket_number' => 'SIXX-'.$content['TransID'],
                 'ticket_is_valid' => true
             ]);
-            //sending email
-            Mail::to('itsupport@sixx-spirits.com')
-                // ->cc(['finance@sixx-spirits.com'])
-                ->send(new sendMail($content));
+            // //sending email
+            // Mail::to('itsupport@sixx-spirits.com')
+            //     // ->cc(['finance@sixx-spirits.com'])
+            //     ->send(new sendMail($content));
+            // $this->generatePDF($content['FirstName'], $content['LastName'], $content['MSISDN'], $content['TransID']);
+            $data = [
+                'title' => 'SIXX SPIRITS EVENT TICKET',
+                'first_name' => $content['FirstName'],
+                'second_name' => $content['LastName'],
+                'phone' =>  $content['MSISDN'],
+                'ticket_code' => 'SIXX-'.$content['TransID']
+            ];
+            $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0,0,396,612], 'landscape');
+            $pdf->render();
+            file_put_contents($content['TransID'].'.pdf', $pdf->output());
+            //response
             return response()->json([
                 'msg' => 'success'
             ]);
@@ -170,15 +182,19 @@ class TicketController extends Controller
         }
     }
 
-    public function generatePDF()
-    {
-        $data = [
-            'title' => 'SIXX',
-            'date' => date('m/d/Y'),
-        ];
+    // public function generatePDF($firstName, $lastName, $phone, $ticketNumber)
+    // // public function generatePDF()
+    // {
+    //     // return view('pdf.ticket');
+    //     $data = [
+    //         'title' => 'SIXX SPIRITS EVENT TICKET',
+    //         // 'date' => date('m/d/Y'),
+    //     ];
 
-        $pdf = PDF::loadView('pdf.ticket', $data);
+    //     $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0,0,396,612], 'landscape');
 
-        return $pdf->download('document.pdf');
-    }
+    //     return Storage::put($ticketNumber, $pdf->output());
+
+    //     // return $pdf->download('document.pdf');
+    // }
 }
