@@ -29,6 +29,7 @@ Route::post('/initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])
 Route::post('/stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
 Route::post('/confirmation', [TicketController::class, 'mpesaConfirmation']);
 Route::post('/validation', [TicketController::class, 'mpesaValidation']);
+Route::get('/ticket-pdf', [TicketController::class, 'generatePDF']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
