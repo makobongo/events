@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             AmenitiesTableSeeder::class,
             AmenityPriceTableSeeder::class,
             GallariesTableSeeder::class,
-            SponsorsTableSeeder::class
+            SponsorsTableSeeder::class,
+            PaymentsTableSeeder::class,
         ]);
     }
 }
