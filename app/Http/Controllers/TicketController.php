@@ -116,6 +116,7 @@ class TicketController extends Controller
                 'FirstName' => $content['FirstName'],
                 'MiddleName' => $content['MiddleName'],
                 'LastName' => $content['LastName'],
+                'ticket_number' => 'SIXX-'.$content['TransID'],
                 'ticket_is_valid' => true
             ]);
             //sending email
