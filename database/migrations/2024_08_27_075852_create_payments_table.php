@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string("LastName")->nullable();
             $table->decimal("TransAmount", 8, 2)->nullable();
             $table->decimal("OrgAccountBalance", 8, 2)->nullable();
+            $table->string('ticket_number')->nullable();
             $table->boolean('ticket_is_valid')->nullable();
             $table->softDeletes();
             $table->timestamps();
