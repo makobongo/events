@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Laravel PDF Example</title>
-    <style>
-        body {
-            font-family: 'Arial, sans-serif';
-            background-color: black;
-            color: white
-        }
-        /* .container {
-            margin: 0 auto;
-            padding: 20px;
-        } */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .content {
-            font-size: 12px;
-        }
-    </style>
+    <title>SIXX SPIRITS EVENT</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1 style="font-family: 'Courier New', monospace; font-size:70px;">{{ $title }}</h1>
-            <p>Date: {{ $date }}</p>
-        </div>
-        <div class="content">
-            <p>Terms & Condition apply</p>
-            <p>
-                <ul>
-                    <li>0716 667 121</li>
-                    <li>sixxsocial@sixx-spirits.com</li>
-                    <li>www.sixx-spirits</li>
-                </ul>
-            </p>
+
+<body style="background-color: black;">
+    <div>
+        <h1 style="font-family: 'Courier New', monospace; font-size:30px;text-align:center;color: white;">SIXX SPIRITS EVENTS TICKET</h1>
+        <p style="color:white;font: size 14px;text-align:center;">Name: {{ $first_name }} {{ $second_name }}</p>
+        <div style="text-align:center;">
+            <img src="data:image/png;base64, {{ base64_encode(QrCode::size(200)->backgroundColor(255, 255, 0)->color(0, 0, 255)->margin(1)->generate($first_name.' '.$second_name.' '.'ticket is valid')) }} ">
         </div>
     </div>
 </body>
+
 </html>
