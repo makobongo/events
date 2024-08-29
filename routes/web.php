@@ -23,13 +23,10 @@ Route::patch('/events/{event}', [EventController::class , 'update']);
 Route::delete('/events/{event}', [EventController::class , 'destroy']);
 Route::post('/publisher', [PublisherController::class, 'store']);
 Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
-#Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
-#Route::get('/tokens', [TicketController::class, 'generateAccesstoken']);
 Route::post('/initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])->name('ticket.store');
 Route::post('/stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
 Route::post('/confirmation', [TicketController::class, 'mpesaConfirmation']);
 Route::post('/validation', [TicketController::class, 'mpesaValidation']);
-Route::get('/ticket-pdf', [TicketController::class, 'generatePDF']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
