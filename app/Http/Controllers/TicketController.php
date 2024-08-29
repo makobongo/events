@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use PDF;
 use Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TicketController extends Controller
 {
@@ -55,20 +57,17 @@ class TicketController extends Controller
     }
     public function lipaNaMpesaOnline()
     {
-        // alert::alert('Title', 'Message', 'Type');
-        // alert::info('SIXX SPIRITS','Kindly Check your phone and enter password to process payment');
-        // return redirect()->back();
-        // // Format the phone number to Intl format
+        // Format the phone number to Intl format
         $phone = sprintf('254%s', substr(request()->phone, 1, 9));
 
         $price = (float)request()->ticket_price * (int)request()->number_of_tickets;
-        // // Generate an access token
+        // Generate an access token
         $accessToken = $this->generateAccesstoken();
-        // // Build the URL for the lnmo endpoint
+        // Build the URL for the lnmo endpoint
         $url = sprintf('%smpesa/stkpush/v1/processrequest', $this->mpesa_url);
-        // // Read the config data
+        // Read the config data
         $shortcode = 174379;
-        // // Get the current timestamp
+        // Get the current timestamp
         $timestamp = now()->format('YmdHis');
 
         // The password for encrypting the request.
@@ -77,7 +76,7 @@ class TicketController extends Controller
         $password = base64_encode(sprintf('%s%s%s', $shortcode, $passkey, $timestamp));
         // $callbackUrl = $this->call_back_url.'/stk_callback';
         $callbackUrl = $this->call_back_url . '/stk_callback';
-        // // Make the request
+        // Make the request
         $response = Http::withToken($accessToken)->post($url, [
             'BusinessShortCode' => $shortcode,
             'Password' => $password,
@@ -116,25 +115,27 @@ class TicketController extends Controller
                 'FirstName' => $content['FirstName'],
                 'MiddleName' => $content['MiddleName'],
                 'LastName' => $content['LastName'],
-                'ticket_number' => 'SIXX-'.$content['TransID'],
+                'ticket_number' => 'SIXX-' . $content['TransID'],
                 'ticket_is_valid' => true
             ]);
-            // //sending email
-            // Mail::to('itsupport@sixx-spirits.com')
-            //     // ->cc(['finance@sixx-spirits.com'])
-            //     ->send(new sendMail($content));
-            // $this->generatePDF($content['FirstName'], $content['LastName'], $content['MSISDN'], $content['TransID']);
+            // $ticket_validity = DB::select('select ticket_is_valid from payments where TransID'.' = '.$content['TransID']);
             $data = [
                 'title' => 'SIXX SPIRITS EVENT TICKET',
                 'first_name' => $content['FirstName'],
                 'second_name' => $content['LastName'],
                 'phone' =>  $content['MSISDN'],
-                'ticket_code' => 'SIXX-'.$content['TransID']
+                'ticket_code' => 'SIXX-' . $content['TransID'],
+                // 'ticket_validity' => $ticket_validity
             ];
-            $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0,0,396,612], 'landscape');
+            $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
             $pdf->render();
-            file_put_contents($content['TransID'].'.pdf', $pdf->output());
-            //response
+            file_put_contents($content['TransID'] . '.pdf', $pdf->output());
+            $filePath = public_path($content['TransID'] . '.pdf');
+            // //sending email
+            Mail::to('developer@sixx-spirits.com')
+                // ->cc(['finance@sixx-spirits.com', 'stevewanjau@sixx-spirits.com'])
+                ->send(new sendMail($content, $filePath));
+            // response
             return response()->json([
                 'msg' => 'success'
             ]);
@@ -181,20 +182,4 @@ class TicketController extends Controller
             return redirect()->back();
         }
     }
-
-    // public function generatePDF($firstName, $lastName, $phone, $ticketNumber)
-    // // public function generatePDF()
-    // {
-    //     // return view('pdf.ticket');
-    //     $data = [
-    //         'title' => 'SIXX SPIRITS EVENT TICKET',
-    //         // 'date' => date('m/d/Y'),
-    //     ];
-
-    //     $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0,0,396,612], 'landscape');
-
-    //     return Storage::put($ticketNumber, $pdf->output());
-
-    //     // return $pdf->download('document.pdf');
-    // }
 }
