@@ -45,16 +45,25 @@
             <form method="POST" action="{{ route('ticket.store') }}">
               @csrf
               <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" placeholder="Your Name" required autocomplete="name" autofocus>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" name="phone" placeholder="Phone Number" required>
+                <input type="number" class="form-control  @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required autocomplete="phone">
+                @error('phone')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <div class="form-group">
                 @include('partials.terms')
               </div>
               <div class="form-group">
-                <!-- <input type="number" class="form-control" name="number_of_tickets" placeholder="Number of Tickets"> -->
                 <label>Select Number of Ticket you are purchasing <b>(default is 1)</b></label>
                 <select name="number_of_tickets" class="form-control">
                   <option value="1" selected>1</option>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Amenity;
+use App\Models\Gallery;
 use App\Models\Price;
 use App\Models\Speaker;
+use App\Models\Sponsor;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,8 @@ class HomeController extends Controller
         $amenities = Amenity::with('prices')->get();
         $venues = Venue::all();
         $speakers = Speaker::all();
-        return view('home', ['prices'=>$prices, 'amenities'=>$amenities,'venues'=>$venues, 'speakers'=>$speakers]);
+        $galleries = Gallery::all();
+        $sponsors = Sponsor::all();
+        return view('home', ['prices'=>$prices, 'amenities'=>$amenities,'venues'=>$venues, 'speakers'=>$speakers, 'galleries'=>$galleries, 'sponsors'=>$sponsors]);
     }
 }

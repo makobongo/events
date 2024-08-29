@@ -23,6 +23,8 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
+
   @include('partials.header')
 
   @yield('content')

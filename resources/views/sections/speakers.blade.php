@@ -9,7 +9,7 @@
       @foreach($speakers as $speaker)
         <div class="col-lg-4 col-md-6">
           <div class="speaker">
-            <img src="{{ asset ('img/placeholder.svg')}}" alt="{{ $speaker->name }}" class="img-fluid">
+            <img src="{{ asset ('img/placeholder.svg')}}" alt="{{ $speaker->name }}" class="rounded-circle" height="300px">
             <div class="details">
               <h3><a href="#">{{ $speaker->name }}</a></h3>
               <p>{{ $speaker->description }}</p>
