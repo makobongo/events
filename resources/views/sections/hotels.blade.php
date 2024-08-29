@@ -7,42 +7,20 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="hotel">
-            <div class="hotel-img">
-              <img src="#" alt="hotel 12" class="img-fluid">
-            </div>
-            <h3><a href="#">hotel 11</a></h3>
-            <div class="stars">
-                <i class="fa fa-star"></i>
-            </div>
-            <p>one of the distinct hotels</p>
+      @foreach($hotels as $hotel)
+      <div class="col-lg-4 col-md-6">
+        <div class="hotel">
+          <div class="hotel-img">
+            <img src="{{ asset('storage/gallery/'.$hotel->img) }}" alt="{{$hotel->name}}" class="img-fluid">
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="hotel">
-            <div class="hotel-img">
-              <img src="#" alt="hotel 12" class="img-fluid">
-            </div>
-            <h3><a href="#">hotel 11</a></h3>
-            <div class="stars">
-                <i class="fa fa-star"></i>
-            </div>
-            <p>one of the distinct hotels</p>
+          <h3><a href="#">{{$hotel->name}}</a></h3>
+          <div class="stars">
+            <i class="fa fa-star"></i>
           </div>
+          <p>{{$hotel->description}}</p>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="hotel">
-            <div class="hotel-img">
-              <img src="#" alt="hotel 12" class="img-fluid">
-            </div>
-            <h3><a href="#">hotel 11</a></h3>
-            <div class="stars">
-                <i class="fa fa-star"></i>
-            </div>
-            <p>one of the distinct hotels</p>
-          </div>
-        </div>
+      </div>
+      @endforeach
     </div>
   </div>
 
