@@ -90,7 +90,7 @@ class TicketController extends Controller
             'TransactionDesc' => 'Payment For SIXX SPIRITS GOODS.'
         ])->json();
 
-        alert::info('SIXX SPIRITS', 'Kindly Check your phone and enter password to process payment');
+        alert::info(env('APP_NAME'), 'Kindly Check your phone and enter password to process payment');
         return redirect()->back();
 
         // return $response;
@@ -180,9 +180,7 @@ class TicketController extends Controller
         //     return redirect()->back();
         // }
         // $data = file_get_contents('php://input');
-        // $data = json_decode(request()->getContent(), true);
-        // Storage::disk('local')->put('stk.txt', $data);
-        $FOO="bar,baz,foobar";
-        dd(explode(",",$FOO));
+        $data = json_decode(request()->getContent(), true);
+        Storage::disk('local')->put('stk.txt', $data);
     }
 }
