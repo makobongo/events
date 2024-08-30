@@ -28,5 +28,3 @@ Route::post('/stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->
 Route::post('/confirmation', [TicketController::class, 'mpesaConfirmation']);
 Route::post('/validation', [TicketController::class, 'mpesaValidation']);
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
