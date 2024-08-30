@@ -11,6 +11,7 @@ use App\Models\Setting;
 use App\Models\Speaker;
 use App\Models\Sponsor;
 use App\Models\Venue;
+use Alert;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,6 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        alert()->warning('Are you over 18?','To choose to proceed on our website, you have confirmed.');
         $prices = Price::with('amenities')->get();
         $amenities = Amenity::with('prices')->get();
         $venues = Venue::all();
