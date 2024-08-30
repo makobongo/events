@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::post('/events', [EventController::class , 'store']);
-Route::patch('/events/{event}', [EventController::class , 'update']);
-Route::delete('/events/{event}', [EventController::class , 'destroy']);
-Route::post('/publisher', [PublisherController::class, 'store']);
-Route::patch('/publisher/{publisher}', [PublisherController::class, 'update']);
-Route::post('/initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])->name('ticket.store');
-Route::post('/stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
-Route::post('/confirmation', [TicketController::class, 'mpesaConfirmation']);
-Route::post('/validation', [TicketController::class, 'mpesaValidation']);
-Route::get('/test', function(){
+Route::post('events', [EventController::class , 'store']);
+Route::patch('events/{event}', [EventController::class , 'update']);
+Route::delete('events/{event}', [EventController::class , 'destroy']);
+Route::post('publisher', [PublisherController::class, 'store']);
+Route::patch('publisher/{publisher}', [PublisherController::class, 'update']);
+Route::post('initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])->name('ticket.store');
+Route::post('stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
+Route::post('confirmation', [TicketController::class, 'mpesaConfirmation']);
+Route::post('validation', [TicketController::class, 'mpesaValidation']);
+Route::get('test', function(){
    return bcrypt('password');
 });
 Auth::routes();
