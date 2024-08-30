@@ -4,7 +4,7 @@
 
     <div class="section-header">
       <h2>Contact Us</h2>
-      <p>Nihil officia ut sint molestiae tenetur.</p>
+      <p>Enter your details below to contact us</p>
     </div>
 
     <div class="row contact-info">
@@ -13,7 +13,7 @@
         <div class="contact-address">
           <i class="ion-ios-location-outline"></i>
           <h3>Address</h3>
-          <address>00100, Nairobi</address>
+          <address>{{ $settings['contact_address'] }}</address>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
         <div class="contact-phone">
           <i class="ion-ios-telephone-outline"></i>
           <h3>Phone Number</h3>
-          <p><a href="tel:0000000000">0000000000</a></p>
+          <p><a href="tel:{{ str_replace(' ', '', $settings['contact_phone'] ?? '') }}">{{ $settings['contact_phone'] ?? '' }}</a></p>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
         <div class="contact-email">
           <i class="ion-ios-email-outline"></i>
           <h3>Email</h3>
-          <p><a href="mailto:info@sixx.legal">sixx@sixx-spirits.com</a></p>
+          <p><a href="mailto:{{ $settings['contact_email'] ?? '' }}">{{ $settings['contact_email'] ?? '' }}</a></p>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
     <div class="form">
       <div id="sendmessage">Your message has been sent. Thank you!</div>
       <div id="errormessage"></div>
-      <form action="" method="post" role="form" class="contactForm">
+      <form action="#" method="#" role="form" class="contactForm">
         <div class="form-row">
           <div class="form-group col-md-6">
             <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />

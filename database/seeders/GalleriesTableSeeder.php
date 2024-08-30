@@ -6,7 +6,7 @@ use App\Models\Gallery;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class GallariesTableSeeder extends Seeder
+class GalleriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

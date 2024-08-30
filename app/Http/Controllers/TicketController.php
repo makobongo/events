@@ -125,7 +125,7 @@ class TicketController extends Controller
                 'second_name' => $content['LastName'],
                 'phone' =>  $content['MSISDN'],
                 'ticket_code' => 'SIXX-' . $content['TransID'],
-                // 'ticket_validity' => $ticket_validity
+                'paid_amount' => $content['TransAmount']
             ];
             $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
             $pdf->render();
