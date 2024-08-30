@@ -19,6 +19,8 @@ class TicketController extends Controller
     private $mpesa_url;
     private $pass_key;
     private $call_back_url;
+    private $primary_email;
+    private $secondary_emails;
 
     public function __construct()
     {
@@ -28,6 +30,8 @@ class TicketController extends Controller
         $this->mpesa_url = config('mpesa.credentials.mpesa_url');
         $this->pass_key = config('mpesa.credentials.pass_key');
         $this->call_back_url = config('mpesa.credentials.call_back_url');
+        $this->primary_email = config('mailinglist.credentials.primary_email');
+        $this->secondary_emails = config('mailinglist.credentials.secondary_emails');
     }
     /**
      * Generates access token
@@ -113,7 +117,6 @@ class TicketController extends Controller
                 'ticket_number' => 'SIXX-' . $content['TransID'],
                 'ticket_is_valid' => true
             ]);
-            // $ticket_validity = DB::select('select ticket_is_valid from payments where TransID'.' = '.$content['TransID']);
             $data = [
                 'title' => 'SIXX SPIRITS EVENT TICKET',
                 'first_name' => $content['FirstName'],
@@ -127,8 +130,8 @@ class TicketController extends Controller
             file_put_contents($content['TransID'] . '.pdf', $pdf->output());
             $filePath = public_path($content['TransID'] . '.pdf');
             // //sending email
-            Mail::to('developer@sixx-spirits.com')
-                // ->cc(['finance@sixx-spirits.com', 'stevewanjau@sixx-spirits.com'])
+            Mail::to($this->primary_email)
+                // ->cc(explode(",",$this->secondary_emails))
                 ->send(new sendMail($content, $filePath));
             // response
             return response()->json([
@@ -177,7 +180,9 @@ class TicketController extends Controller
         //     return redirect()->back();
         // }
         // $data = file_get_contents('php://input');
-        $data = json_decode(request()->getContent(), true);
-        Storage::disk('local')->put('stk.txt', $data);
+        // $data = json_decode(request()->getContent(), true);
+        // Storage::disk('local')->put('stk.txt', $data);
+        $FOO="bar,baz,foobar";
+        dd(explode(",",$FOO));
     }
 }
