@@ -45,9 +45,9 @@
         <div class="col-lg-3 col-md-6 footer-contact">
           <h4>Contact Us</h4>
           <p>
-            addr}<br>
-            <strong>Phone:</strong> 074545454545br>
-            <strong>Email:</strong> sixx@info.legal<br>
+            00100, Off Mombasa Road, Nairobi<br>
+            <strong>Phone:</strong> 0000000000<br>
+            <strong>Email:</strong> sixx@sixx-spirits.com<br>
           </p>
 
           <div class="social-links">

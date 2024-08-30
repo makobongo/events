@@ -18,7 +18,12 @@ class DatabaseSeeder extends Seeder
             SpeakersTableSeeder::class,
             AmenitiesTableSeeder::class,
             AmenityPriceTableSeeder::class,
-            GallariesTableSeeder::class
+            GalleriesTableSeeder::class,
+            SponsorsTableSeeder::class,
+            PaymentsTableSeeder::class,
+            HotelsTableSeeder::class,
+            SettingsTableSeeder::class,
+            FaqsTableSeeder::class,
         ]);
     }
 }
