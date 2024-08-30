@@ -24,7 +24,7 @@ Route::delete('events/{event}', [EventController::class , 'destroy']);
 Route::post('publisher', [PublisherController::class, 'store']);
 Route::patch('publisher/{publisher}', [PublisherController::class, 'update']);
 Route::post('initiate_payment', [TicketController::class, 'lipaNaMpesaOnline'])->name('ticket.store');
-Route::post('stk_callback', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
+Route::post('stk_callback_url', [TicketController::class, 'lipaNaMpesaCallback'])->name('ticket.callback');
 Route::post('confirmation', [TicketController::class, 'mpesaConfirmation']);
 Route::post('validation', [TicketController::class, 'mpesaValidation']);
 Route::get('test', function(){
