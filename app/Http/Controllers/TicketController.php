@@ -86,7 +86,7 @@ class TicketController extends Controller
             'PartyB' => $shortcode,
             'PhoneNumber' => $phone,
             'CallBackURL' => $callbackUrl,
-            'AccountReference' => 'SIXX SPIRITS LTD',
+            'AccountReference' => env('ACCOUNTREFRANCE'),
             'TransactionDesc' => 'Payment For SIXX SPIRITS GOODS.'
         ])->json();
 
@@ -114,15 +114,15 @@ class TicketController extends Controller
                 'FirstName' => $content['FirstName'],
                 'MiddleName' => $content['MiddleName'],
                 'LastName' => $content['LastName'],
-                'ticket_number' => 'SIXX-' . $content['TransID'],
+                'ticket_number' => env('ACCOUNT_INIT').'-' . $content['TransID'],
                 'ticket_is_valid' => true
             ]);
             $data = [
-                'title' => 'SIXX SPIRITS EVENT TICKET',
+                'title' => env('ACCOUNT_INIT').' EVENT TICKET',
                 'first_name' => $content['FirstName'],
                 'second_name' => $content['LastName'],
                 'phone' =>  $content['MSISDN'],
-                'ticket_code' => 'SIXX-' . $content['TransID'],
+                'ticket_code' => env('ACCOUNT_INIT').'-' . $content['TransID'],
                 'paid_amount' => $content['TransAmount']
             ];
             $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
