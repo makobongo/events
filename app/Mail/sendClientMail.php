@@ -13,16 +13,14 @@ class sendClientMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $response;
-    private $title;
+    private $data;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($response,$title)
+    public function __construct($data)
     {
-        $this->response = $response;
-        $this->title = $title;
+        $this->data = $data;
     }
 
     /**
@@ -31,7 +29,7 @@ class sendClientMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->title
+            subject: 'data'
         );
     }
 
@@ -42,7 +40,7 @@ class sendClientMail extends Mailable
     {
         return new Content(
             view: 'mail.client',
-            with: ['response' => $this->response],
+            with: ['data' => $this->data],
         );
     }
 
