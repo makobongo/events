@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendClientMail;
 use App\Mail\sendMail;
 use App\Models\Client;
 use App\Models\Payment;
@@ -163,29 +164,8 @@ class TicketController extends Controller
     public function lipaNaMpesaCallback(Request $requests)
     {
         $data = file_get_contents('php://input');
-        Storage::disk('local')->put('stk.txt', $data);
-        // $content = json_decode(request()->getContent(), true);
-        // Log::info("message");
-        // if (!is_null($content)) {
-        //     $MerchantRequestID = $content['MerchantRequestID'];
-        //     $CheckoutRequestID = $content['CheckoutRequestID'];
-        //     $ResultCode = $content['ResultCode'];
-        //     $ResultDesc = $content['ResultDesc'];
-        //     if ($ResultCode == 0) {
-        //         alert::success('Successful!', 'Payment processed successfully');
-        //     } else {
-        //         alert::error('Ooops!', 'Payment failed');
-        //     }
-        // } else {
-        //     alert::error('Ooops!', 'Something went wrong');
-        //     return redirect()->back();
-        // }
-        // $data = file_get_contents('php://input');
-        // $data = json_decode($requests->getContent(), true);
-        // Storage::disk('local')->put('stk.txt', $data);
-        // return response()->json([
-        //     'msg'=>'success hit!'
-        // ]);
+        Mail::to($this->primary_email)
+                ->send(new sendClientMail($data));
     }
 
     public function stkPush()
