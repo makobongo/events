@@ -91,10 +91,10 @@ class TicketController extends Controller
                 'TransactionDesc' => env('TRANSACTION_DESC')
             ])->json();
 
-        // alert::info(env('APP_NAME'), 'Kindly Check your phone and enter password to process payment');
-        // return redirect()->back();
+        alert::info(env('APP_NAME'), 'Kindly Check your phone and enter password to process payment');
+        return redirect()->back();
 
-        return $response;
+        // return $response;
     }
 
     public function mpesaConfirmation()
