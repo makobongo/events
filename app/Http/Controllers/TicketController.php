@@ -162,7 +162,10 @@ class TicketController extends Controller
      */
     public function lipaNaMpesaCallback(Request $requests)
     {
+        $data = file_get_contents('php://input');
+        Storage::disk('local')->put('stk.txt', $data);
         // $content = json_decode(request()->getContent(), true);
+        // Log::info("message");
         // if (!is_null($content)) {
         //     $MerchantRequestID = $content['MerchantRequestID'];
         //     $CheckoutRequestID = $content['CheckoutRequestID'];
@@ -183,7 +186,6 @@ class TicketController extends Controller
         // return response()->json([
         //     'msg'=>'success hit!'
         // ]);
-        Log::info("message", $requests->all());
     }
 
     public function stkPush()
