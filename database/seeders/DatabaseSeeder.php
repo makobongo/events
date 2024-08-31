@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             HotelsTableSeeder::class,
             SettingsTableSeeder::class,
             FaqsTableSeeder::class,
+            ClientsTableSeeder::class
         ]);
     }
 }
