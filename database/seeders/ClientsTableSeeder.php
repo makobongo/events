@@ -19,7 +19,10 @@ class ClientsTableSeeder extends Seeder
                 'first_name' => $faker->firstName(),
                 'second_name' => $faker->lastName(),
                 'email' => $faker->safeEmail(),
-                'phone_number' => $faker->numerify('2547######'),
+                'phone' => $faker->numerify('2547######'),
+                'number_of_ticket' => 1,
+                'name_of_ticket' => 'Early Bird Ticket',
+                'ticket_cost' => 1500,
                 'is_valid' => $faker->randomElement([false, true])
             ]);
     }

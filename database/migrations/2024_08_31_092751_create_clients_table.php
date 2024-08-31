@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('second_name')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('number_of_ticket')->nullable();
+            $table->string('name_of_ticket')->nullable();
+            $table->integer('ticket_cost')->nullable();
             $table->boolean('is_valid')->nullable()->default(false);
             $table->timestamps();
             $table->softDeletes();
