@@ -163,21 +163,9 @@ class TicketController extends Controller
      */
     public function lipaNaMpesaCallback(Request $requests)
     {
-        // $data = file_get_contents('php://input');
-        // Storage::disk('local')->put('content.json', $data);
-
-        // $path = storage_path() . "/app/success.json";
-        // $jsonContents = file_get_contents($path);
-        // $jsonData = json_decode($jsonContents, true);
-        // return $jsonData['Body']['stkCallback']['CallbackMetadata']['Item'];
-
         $data = file_get_contents('php://input');
-        $responseCode = $data['Body']['stkCallback']['ResultCode'];
-        $d = $data['Body']['stkCallback']['CallbackMetadata']['Item'];
-        if ($responseCode == 0) {
-            Mail::to($this->primary_email)
-                ->send(new sendClientMail($d));
-        }
+        Mail::to($this->primary_email)
+                ->send(new sendClientMail($data));
     }
 
     public function stkPush()
