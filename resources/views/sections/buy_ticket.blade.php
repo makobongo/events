@@ -3,7 +3,7 @@
 
     <div class="section-header">
       <h2>Buy Tickets</h2>
-      <p>Buy tickets for the sixx spirits event</p>
+      <p>Buy tickets for the {{ env('APP_NAME') }} event</p>
     </div>
 
     <div class="row">

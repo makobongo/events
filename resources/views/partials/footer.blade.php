@@ -45,9 +45,9 @@
         <div class="col-lg-3 col-md-6 footer-contact">
           <h4>Contact Us</h4>
           <p>
-            00100, Off Mombasa Road, Nairobi<br>
-            <strong>Phone:</strong> 0000000000<br>
-            <strong>Email:</strong> sixx@sixx-spirits.com<br>
+            {{ env('CONTACT_ADDRESS')}}<br>
+            <strong>Phone:</strong> {{ env('CONTACT_NUMBER') }}<br>
+            <strong>Email:</strong> {{ env('CONTACT_EMAIL')}}<br>
           </p>
 
           <div class="social-links">
