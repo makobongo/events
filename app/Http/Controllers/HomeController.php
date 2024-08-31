@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        alert()->warning('Are you over 18?','To choose to proceed on our website, you have confirmed.');
+        // alert()->warning('Are you over 18?','To choose to proceed on our website, you have confirmed.');
         $prices = Price::with('amenities')->get();
         $amenities = Amenity::with('prices')->get();
         $venues = Venue::all();

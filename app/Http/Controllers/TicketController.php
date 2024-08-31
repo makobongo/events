@@ -6,9 +6,11 @@ use App\Mail\sendMail;
 use App\Models\Payment;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use PDF;
 use Alert;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class TicketController extends Controller
@@ -59,7 +61,7 @@ class TicketController extends Controller
     {
         // Format the phone number to Intl format
         $phone = sprintf('254%s', substr(request()->phone, 1, 9));
-        $price = (float)request()->ticket_price * (int)request()->number_of_tickets;
+        // $price = (float)request()->ticket_price * (int)request()->number_of_tickets;
         // Generate an access token
         $accessToken = $this->generateAccesstoken();
         // Build the URL for the lnmo endpoint
@@ -89,10 +91,10 @@ class TicketController extends Controller
                 'TransactionDesc' => env('TRANSACTION_DESC')
             ])->json();
 
-        alert::info(env('APP_NAME'), 'Kindly Check your phone and enter password to process payment');
-        return redirect()->back();
+        // alert::info(env('APP_NAME'), 'Kindly Check your phone and enter password to process payment');
+        // return redirect()->back();
 
-        // // return $response;
+        return $response;
     }
 
     public function mpesaConfirmation()
@@ -161,7 +163,7 @@ class TicketController extends Controller
     /**
      * Process the callback data sent to this endpoint
      */
-    public function lipaNaMpesaCallback()
+    public function lipaNaMpesaCallback(Request $requests)
     {
         // $content = json_decode(request()->getContent(), true);
         // if (!is_null($content)) {
@@ -179,7 +181,11 @@ class TicketController extends Controller
         //     return redirect()->back();
         // }
         // $data = file_get_contents('php://input');
-        $data = json_decode(request()->getContent(), true);
-        Storage::disk('local')->put('stk.txt', $data);
+        // $data = json_decode($requests->getContent(), true);
+        // Storage::disk('local')->put('stk.txt', $data);
+        // return response()->json([
+        //     'msg'=>'success hit!'
+        // ]);
+        Log::info("message", $requests->all());
     }
 }
