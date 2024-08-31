@@ -14,13 +14,15 @@ class sendClientMail extends Mailable
     use Queueable, SerializesModels;
 
     private $response;
+    private $title;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($response)
+    public function __construct($response,$title)
     {
         $this->response = $response;
+        $this->title = $title;
     }
 
     /**
@@ -29,7 +31,7 @@ class sendClientMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your '. env('APP_NAME').' transaction cancelled.',
+            subject: $this->title
         );
     }
 
