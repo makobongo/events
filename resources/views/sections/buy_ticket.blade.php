@@ -45,28 +45,21 @@
             <form method="POST" action="{{ route('ticket.store') }}">
               @csrf
               <div class="form-group">
-                <!-- <input type="text" class="form-control" value="" name="" placeholder="First Name">
-                <input type="text" class="form-control" value="" name="" placeholder="Second Name"> -->
                 <div class="row">
                   <div class="col-sm">
-                  <input type="text" class="form-control" value="" name="" placeholder="First Name" required>
+                  <input type="text" class="form-control" value="" name="first_name" placeholder="First Name" required autofocus>
                   </div>
                   <div class="col-sm">
-                  <input type="text" class="form-control" value="" name="" placeholder="Second Name" required>
+                  <input type="text" class="form-control" value="" name="second_name" placeholder="Second Name" required>
                   </div>
                 </div>
 
               </div>
               <div class="form-group">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Your Email" required autocomplete="email" autofocus>
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                <input type="email" class="form-control" value="" name="email" placeholder="Your Email" required>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control  @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required autocomplete="phone">
+                <input type="number" class="form-control" placeholder="(Mpesa number) e.g. 07........ or 01........." value="" name="phone" required>
                 @error('phone')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -87,10 +80,10 @@
                 </select>
               </div>
               <div class="form-group">
-                <select id="ticket-type" name="ticket_price" class="form-control" required>
+                <select id="ticket-type" name="ticket" class="form-control" required>
                   <option value="">-- Select Your Ticket Type --</option>
                   @foreach($prices as $price)
-                  <option value="{{ $price->price }}">{{ $price->name }}</option>
+                  <option value="[ 'price': {{ $price->price }}, 'name': {{ $price->name }}]">{{ $price->name }}</option>
                   @endforeach
                 </select>
               </div>
