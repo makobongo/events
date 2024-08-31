@@ -83,7 +83,7 @@
                 <select id="ticket-type" name="ticket" class="form-control" required>
                   <option value="">-- Select Your Ticket Type --</option>
                   @foreach($prices as $price)
-                  <option value="[ 'price': {{ $price->price }}, 'name': {{ $price->name }}]">{{ $price->name }}</option>
+                  <option value="{{ $price->price }},{{ $price->name }}">{{ $price->name }}</option>
                   @endforeach
                 </select>
               </div>
