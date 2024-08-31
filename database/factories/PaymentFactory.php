@@ -25,14 +25,14 @@ class PaymentFactory extends Factory
             "TransID" => $transId,
             "TransTime" => now()->format('YmdHis'),
             "BusinessShortCode" => 174379,
-            "BillRefNumber" => "SIXX SPIRITS EVENT",
+            "BillRefNumber" => env("ACCOUNT_INIT")." SPIRITS EVENT",
             "MSISDN" => $this->faker->numerify('2547########'),
             "FirstName" => $this->faker->firstName(),
             "MiddleName" => $this->faker->firstNameMale(),
             "LastName" => $this->faker->lastName(),
             "TransAmount" => $paymentAmount,
             "OrgAccountBalance"=> $accountBalance,
-            "ticket_number" => 'SIXX-'.$transId,
+            "ticket_number" => env('ACCOUNT_INIT').'-'.$transId,
             'ticket_is_valid' => true,
         ];
     }
