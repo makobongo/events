@@ -73,6 +73,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
+            return redirect()->back();
         } else {
             $ticket = explode(',', request()->ticket);
             $name_of_ticket = $ticket[1];
@@ -89,6 +90,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
+            return redirect()->back();
         }
     }
 
@@ -217,7 +219,5 @@ class TicketController extends Controller
             'AccountReference' => env('ACCOUNT_REF_NAME'),
             'TransactionDesc' => env('TRANSACTION_DESC')
         ])->json();
-        return redirect()->back();
-        // return $response;
     }
 }
