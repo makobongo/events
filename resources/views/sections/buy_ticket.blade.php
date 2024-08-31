@@ -49,10 +49,10 @@
                 <input type="text" class="form-control" value="" name="" placeholder="Second Name"> -->
                 <div class="row">
                   <div class="col-sm">
-                  <input type="text" class="form-control" value="" name="" placeholder="First Name">
+                  <input type="text" class="form-control" value="" name="" placeholder="First Name" required>
                   </div>
                   <div class="col-sm">
-                  <input type="text" class="form-control" value="" name="" placeholder="Second Name">
+                  <input type="text" class="form-control" value="" name="" placeholder="Second Name" required>
                   </div>
                 </div>
 
