@@ -16,11 +16,11 @@ class SettingsTableSeeder extends Seeder
         $settings = [
             [
                 'key'   => 'title',
-                'value' => 'The SIXX SPIRITS <br><span>EVENTS</span> Conference'
+                'value' => 'The <span>'.env('APP_NAME').'</span>'
             ],
             [
                 'key'   => 'subtitle',
-                'value' => 'December, Downtown Conference Center, Nairobi'
+                'value' => '6IXX Quarry, Nairobi'
             ],
             [
                 'key'   => 'youtube_link',

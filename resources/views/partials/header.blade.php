@@ -15,7 +15,7 @@
       <ul class="nav-menu">
         <li class="menu-active"><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#intro">Home</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#about">About</a></li>
-        <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#speakers">Speakers</a></li>
+        <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#speakers">Entertainers</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#schedule">Schedule</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#venue">Venue</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#hotels">Hotels</a></li>
