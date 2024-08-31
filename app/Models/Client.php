@@ -21,6 +21,7 @@ class Client extends Model
         'second_name',
         'email',
         'phone_number',
+        'is_valid',
         'created_at',
         'updated_at',
         'deleted_at',
