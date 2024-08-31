@@ -32,7 +32,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_where',
-                'value' => 'Downtown Conference Center, Nairobi'
+                'value' => '6IXX Quarry'
             ],
             [
                 'key'   => 'about_when',
