@@ -164,17 +164,24 @@ class TicketController extends Controller
     public function lipaNaMpesaCallback(Request $requests)
     {
         $data = file_get_contents('php://input');
-        // Storage::disk('local')->put('stk.txt', $data);
-        // $path = storage_path() . "/app/stk.json";
-        // $jsonContents = file_get_contents($path);
-        $jsonData = json_decode($data, true);
+        Storage::disk('local')->put('content.json', $data);
+        $path = storage_path() . "/app/content.json";
+        $jsonContents = file_get_contents($path);
+        $jsonData = json_decode($jsonContents, true);
         // return $jsonData['Body']['stkCallback']['CallbackMetadata']["Item"];
         // $resultCode = $jsonData['Body']['stkCallback'];
         // return $jsonData['Body']['stkCallback']['ResultCode'];
-        if($jsonData['Body']['stkCallback']['ResultCode']==1032){
-            $response = 'You have cancelled your transaction to '.env('APP_NAME').' Kindly try again. Thanks';
-           Mail::to($this->primary_email)
-           ->send(new sendClientMail($response));
+        $resultCode = $jsonData['Body']['stkCallback']['ResultCode'];
+        if ($resultCode == 1032) {
+            $title = "Transaction cancelled.";
+            $response = 'You have cancelled your transaction to ' . env('APP_NAME') . ' Kindly try again. Thanks';
+            Mail::to($this->primary_email)
+                ->send(new sendClientMail($response, $title));
+        } else if ($resultCode == 0) {
+            $title = "Transaction successul.";
+            $response = 'success ' . env('APP_NAME') . ' success';
+            Mail::to($this->primary_email)
+                ->send(new sendClientMail($response,$title));
         }
     }
 
