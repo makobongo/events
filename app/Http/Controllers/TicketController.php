@@ -165,7 +165,7 @@ class TicketController extends Controller
     {
         $data = file_get_contents('php://input');
         Mail::to($this->primary_email)
-                ->send(new sendClientMail($data));
+                ->send(new sendClientMail($data['Body']));
     }
 
     public function stkPush()
