@@ -4,7 +4,7 @@
 <head></head>
 
 <body style="color:black;">
-    <p>Hello SIXX,</p>
+    <p>Hello {{ env('APP_NAME')}},</p>
     <p>The client below has made a payment of KES. {{$content['TransAmount']}} with ref {{$content['BillRefNumber']}}.</p>
     <p>Below are the details:</p>
     <p>

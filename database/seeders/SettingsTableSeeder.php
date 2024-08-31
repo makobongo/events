@@ -16,11 +16,11 @@ class SettingsTableSeeder extends Seeder
         $settings = [
             [
                 'key'   => 'title',
-                'value' => 'The SIXX SPIRITS <br><span>EVENTS</span> Conference'
+                'value' => 'The <span>'.env('APP_NAME').'</span>'
             ],
             [
                 'key'   => 'subtitle',
-                'value' => 'December, Downtown Conference Center, Nairobi'
+                'value' => '6IXX Quarry, Nairobi'
             ],
             [
                 'key'   => 'youtube_link',
@@ -28,11 +28,11 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_description',
-                'value' => 'Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in est ut optio sequi unde.'
+                'value' => env('APP_NAME').' event'
             ],
             [
                 'key'   => 'about_where',
-                'value' => 'Downtown Conference Center, Nairobi'
+                'value' => '6IXX Quarry'
             ],
             [
                 'key'   => 'about_when',
@@ -40,15 +40,15 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'contact_address',
-                'value' => '00100 Off Mombasa Road, Nairobi Kenya, Kenya'
+                'value' => env('CONTACT_ADDRESS')
             ],
             [
                 'key'   => 'contact_phone',
-                'value' => '+2547 1666 7121'
+                'value' => env('CONTACT_NUMBER')
             ],
             [
                 'key'   => 'contact_email',
-                'value' => 'sixxsocial@sixx-spirits.com'
+                'value' => env('CONTACT_EMAIL')
             ],
             [
                 'key'   => 'footer_description',
@@ -56,7 +56,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_address',
-                'value' => '00100 Off Mombasa Road <br> Nairobi, 00100<br> Kenya '
+                'value' => env('CONTACT_ADDRESS')
             ],
             [
                 'key'   => 'footer_twitter',

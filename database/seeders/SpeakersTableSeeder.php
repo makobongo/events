@@ -17,7 +17,7 @@ class SpeakersTableSeeder extends Seeder
         $faker = Factory::create();
         $speakers = [
             [
-                'name'              => 'Steve W',
+                'name'              => 'Dj nas',
                 'description'       => 'Quas alias incidunt',
                 'twitter'           => '#',
                 'facebook'          => '#',
@@ -25,7 +25,7 @@ class SpeakersTableSeeder extends Seeder
                 'full_description'  => $faker->paragraph
             ],
             [
-                'name'              => 'W Wambui',
+                'name'              => 'Dj b',
                 'description'       => 'Consequuntur odio aut',
                 'twitter'           => '#',
                 'facebook'          => '#',
@@ -33,37 +33,13 @@ class SpeakersTableSeeder extends Seeder
                 'full_description'  => $faker->paragraph
             ],
             [
-                'name'              => 'J Jackson',
+                'name'              => 'Dj william',
                 'description'       => 'Fugiat laborum et',
                 'twitter'           => '#',
                 'facebook'          => '#',
                 'linkedin'          => '#',
                 'full_description'  => $faker->paragraph
-            ],
-            [
-                'name'              => 'Simon Black',
-                'description'       => 'Debitis iure vero',
-                'twitter'           => '#',
-                'facebook'          => '#',
-                'linkedin'          => '#',
-                'full_description'  => $faker->paragraph
-            ],
-            [
-                'name'              => 'Alejandrin Littel',
-                'description'       => 'Qui molestiae natus',
-                'twitter'           => '#',
-                'facebook'          => '#',
-                'linkedin'          => '#',
-                'full_description'  => $faker->paragraph
-            ],
-            [
-                'name'              => 'Willow Trantow',
-                'description'       => 'Non autem dicta',
-                'twitter'           => '#',
-                'facebook'          => '#',
-                'linkedin'          => '#',
-                'full_description'  => $faker->paragraph
-            ],
+            ]
         ];
         foreach($speakers as $speaker)
         {
