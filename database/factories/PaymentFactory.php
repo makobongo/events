@@ -25,7 +25,7 @@ class PaymentFactory extends Factory
             "TransID" => $transId,
             "TransTime" => now()->format('YmdHis'),
             "BusinessShortCode" => 174379,
-            "BillRefNumber" => env("ACCOUNT_INIT")." SPIRITS EVENT",
+            "BillRefNumber" => env("ACCOUNT_INIT")." ".env('APP_NAME'),
             "MSISDN" => $this->faker->numerify('2547########'),
             "FirstName" => $this->faker->firstName(),
             "MiddleName" => $this->faker->firstNameMale(),
