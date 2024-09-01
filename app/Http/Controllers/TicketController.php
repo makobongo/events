@@ -164,9 +164,8 @@ class TicketController extends Controller
     public function lipaNaMpesaCallback(Request $requests)
     {
         $data = file_get_contents('php://input');
-        $jsonData = json_decode($data, true);
         Mail::to($this->primary_email)
-                ->send(new sendClientMail($jsonData));
+                ->send(new sendClientMail($data));
     }
 
     public function stkPush()
