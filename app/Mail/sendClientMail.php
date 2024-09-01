@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -13,14 +14,19 @@ class sendClientMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $data;
+    private $client;
+    private $file_path;
+
+    private $img;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($client, $filePath, $img)
     {
-        $this->data = $data;
+        $this->client = $client;
+        $this->file_path = $filePath;
+        $this->img = $img;
     }
 
     /**
@@ -40,7 +46,7 @@ class sendClientMail extends Mailable
     {
         return new Content(
             view: 'mail.client',
-            with: ['data' => $this->data],
+            with: ['first_name' => $this->client['first_name'], 'last_name' => $this->client['last_name'], 'phone' => $this->client['phone'], 'number_of_ticket' => $this->client['number_of_ticket'], 'name_of_ticket' => $this->client['name_of_ticket'], 'ticket_cost' => $this->client['ticket_cost'],'img'=>$this->img],
         );
     }
 
@@ -51,6 +57,8 @@ class sendClientMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath($this->file_path),
+        ];
     }
 }
