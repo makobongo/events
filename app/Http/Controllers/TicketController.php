@@ -163,9 +163,60 @@ class TicketController extends Controller
      */
     public function lipaNaMpesaCallback(Request $requests)
     {
-        $data = file_get_contents('php://input');
-        Mail::to($this->primary_email)
-                ->send(new sendClientMail($data));
+        $d = file_get_contents('php://input');
+        // $d = $requests->all();
+        $phone = $d["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3]["Value"];
+        if (Client::where('phone', '0' . substr($phone, -9, 12))->exists()) {
+            $client = Client::where('phone', '0' . substr($phone, -9, 12))->first();
+            $data = [
+                'first_name' => $client->first_name,
+                'last_name' => $client->last_name,
+                'phone' => $client->phone,
+                'number_of_ticket' => $client->number_of_ticket,
+                'name_of_ticket' => $client->name_of_ticket,
+                'ticket_cost' => $client->ticket_cost
+            ];
+            if ($client->name_of_ticket == "Early Bird Ticket") {
+                $pdf = PDF::loadView('mail.client', $data)->setPaper([0, 0, 300, 516], 'portrait');
+                $pdf->render();
+                file_put_contents($data['phone'] . '.pdf', $pdf->output());
+                $filePath = public_path($data['phone'] . '.pdf');
+                $img = 'early-bird-ticket.png';
+                Mail::to($this->primary_email)
+                    ->send(new sendClientMail($data, $filePath, $img));
+            } else if ($client->name_of_ticket == "Regular Ticket") {
+                $pdf = PDF::loadView('mail.client', $data)->setPaper([0, 0, 300, 516], 'portrait');
+                $pdf->render();
+                file_put_contents($data['phone'] . '.pdf', $pdf->output());
+                $filePath = public_path($data['phone'] . '.pdf');
+                $img = 'regular-ticket.png';
+                Mail::to($this->primary_email)
+                    ->send(new sendClientMail($data, $filePath, $img));
+            } else {
+                $pdf = PDF::loadView('mail.client', $data)->setPaper([0, 0, 300, 516], 'portrait');
+                $pdf->render();
+                file_put_contents($data['phone'] . '.pdf', $pdf->output());
+                $filePath = public_path($data['phone'] . '.pdf');
+                $img = 'group-ticket.png';
+                Mail::to($this->primary_email)
+                    ->send(new sendClientMail($data, $filePath, $img));
+            }
+        }
+        // return $d["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3];
+        // $data = Mail::to($this->primary_email)
+        //     ->send(new sendClientMail($d["Body"]["stkCallback"]["ResultCode"]));
+        // return response()->json([
+        //     $data
+        // ]);
+
+
+        // $data = file_get_contents('php://input');
+        // $d = json_encode($requests->all(), true);
+        // $data = Mail::to($this->primary_email)
+        //     ->send(new sendClientMail($d));
+        // return response()->json([
+        //     $data
+        // ]);
     }
 
     public function stkPush()
