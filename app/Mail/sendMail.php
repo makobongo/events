@@ -15,15 +15,15 @@ class sendMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $content;
-    protected $attachedFile;
+    // protected $attachedFile;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($content, $filePath)
+    public function __construct($content)
     {
         $this->content = $content;
-        $this->attachedFile = $filePath;
+        // $this->attachedFile = $filePath;
     }
 
     /**
@@ -32,7 +32,7 @@ class sendMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'MPESA '.$this->content['TransID'].' : PAYMENT CONFIRMATION',
+            subject: 'test',
         );
     }
 
@@ -56,7 +56,7 @@ class sendMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath($this->attachedFile),
+            // Attachment::fromPath($this->attachedFile),
         ];
     }
 }
