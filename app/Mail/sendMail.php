@@ -14,17 +14,17 @@ class sendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $client;
-    protected $status;
+    protected $d;
+    // protected $status;
     // protected $attachedFile;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($client,$status)
+    public function __construct($d)
     {
-        $this->client = $client;
-        $this->status = $status;
+        $this->d = $d;
+        // $this->status = $status;
         // $this->attachedFile = $filePath;
     }
 
@@ -46,7 +46,7 @@ class sendMail extends Mailable
         return new Content(
             view: 'mail.email',
             // with: ['content', $this->content]
-            with: ['client' => $this->client, 'status'=>$this->status],
+            with: ['client' => $this->d],
         );
     }
 
