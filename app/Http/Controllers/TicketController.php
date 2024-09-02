@@ -116,26 +116,49 @@ class TicketController extends Controller
                 'ticket_number' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
                 'ticket_is_valid' => true
             ]);
-            $data = [
-                'title' => env('ACCOUNT_INIT') . ' EVENT TICKET',
-                'first_name' => $content['FirstName'],
-                'second_name' => $content['LastName'],
-                'phone' => $content['MSISDN'],
-                'ticket_code' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
-                'paid_amount' => $content['TransAmount']
-            ];
-            $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
-            $pdf->render();
-            file_put_contents($content['TransID'] . '.pdf', $pdf->output());
-            $filePath = public_path($content['TransID'] . '.pdf');
-            // //sending email
-            Mail::to($this->primary_email)
-                // ->cc(explode(",",$this->secondary_emails))
-                ->send(new sendMail($content, $filePath));
-            // response
-            return response()->json([
-                'msg' => 'success'
-            ]);
+                $client = Client::where('phone', '0' . substr($content['MSISDN'], -9, 12))->first();
+                $data = [
+                    'first_name' => $client->first_name,
+                    'last_name' => $client->last_name,
+                    'phone' => $client->phone,
+                    'number_of_ticket' => $client->number_of_ticket,
+                    'name_of_ticket' => $client->name_of_ticket,
+                    'ticket_cost' => $client->ticket_cost,
+                ];
+                $this->generatePDF($data);
+                $filePath = public_path($data['phone'] . '.pdf');
+                if ($client->name_of_ticket == "Early Bird Ticket") {
+                    Mail::to($this->primary_email)
+                        ->send(new sendMail($data, $filePath));
+                }
+                if ($client->name_of_ticket == "Regular Ticket") {
+                    Mail::to($this->primary_email)
+                        ->send(new sendMail($client, $filePath));
+                }
+                if ($client->name_of_ticket == "Group Ticket") {
+                    Mail::to($this->primary_email)
+                        ->send(new sendMail($client, $filePath));
+                }
+            // $data = [
+            //     'title' => env('ACCOUNT_INIT') . ' EVENT TICKET',
+            //     'first_name' => $content['FirstName'],
+            //     'second_name' => $content['LastName'],
+            //     'phone' => $content['MSISDN'],
+            //     'ticket_code' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
+            //     'paid_amount' => $content['TransAmount']
+            // ];
+            // $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
+            // $pdf->render();
+            // file_put_contents($content['TransID'] . '.pdf', $pdf->output());
+            // $filePath = public_path($content['TransID'] . '.pdf');
+            // // //sending email
+            // Mail::to($this->primary_email)
+            //     // ->cc(explode(",",$this->secondary_emails))
+            //     ->send(new sendMail($content, $filePath));
+            // // response
+            // return response()->json([
+            //     'msg' => 'success'
+            // ]);
         } else {
             return response()->json([
                 'msg' => 'data not available!'
