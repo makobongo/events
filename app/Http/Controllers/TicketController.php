@@ -212,6 +212,7 @@ class TicketController extends Controller
         $data = file_get_contents('php://input');
         $d = json_decode($data, true);
         Mail::to($this->primary_email)->send(new sendMail($d));
+        return $d;
         // if ($d["Body"]["stkCallback"]["ResultCode"] == 0) {
         //     $client = Client::where('phone', '0' . substr($d["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3]["Value"], -9, 12))->first();
         //     $status = $d["Body"]["stkCallback"]["ResultDesc"];
