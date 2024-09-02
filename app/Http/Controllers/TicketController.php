@@ -209,8 +209,10 @@ class TicketController extends Controller
         //     $data
         // ]);
 
-        $data = file_get_contents('php://input');
-        Log::info('message', $data);
+        $callBackdata = file_get_contents('php://input');
+        // $data = json_decode($callBackdata, true);
+        Storage::disk('local')->put('stk.txt', $callBackdata);
+        // Log::info('message', $data);
         // $d = json_decode($data, true);
         // Mail::to($this->primary_email)->send(new sendMail($d));
         // return $d;
