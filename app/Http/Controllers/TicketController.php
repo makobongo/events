@@ -244,7 +244,7 @@ class TicketController extends Controller
             'Password' => $password,
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerPayBillOnline',
-            'Amount' => 5,
+            'Amount' => 1,
             'PartyA' => $phone,
             'PartyB' => $shortcode,
             'PhoneNumber' => $phone,
