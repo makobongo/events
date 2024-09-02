@@ -209,14 +209,14 @@ class TicketController extends Controller
         //     $data
         // ]);
 
-
         $data = file_get_contents('php://input');
-        // $d = json_encode($requests->all(), true);
-        $data = Mail::to($this->primary_email)
-            ->send(new sendMail($data));
-        return response()->json([
-            $data
-        ]);
+        $d = json_decode($data, true);
+        if ($d["Body"]["stkCallback"]["ResultCode"] == 0) {
+            $client = Client::where('phone', '0' . substr($d["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3]["Value"], -9, 12))->first();
+            $status = $d["Body"]["stkCallback"]["ResultDesc"];
+            Mail::to($this->primary_email)
+                ->send(new sendMail($client, $status));
+        }
     }
 
     public function stkPush()
