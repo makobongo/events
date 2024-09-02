@@ -19,11 +19,11 @@ class PricesTableSeeder extends Seeder
                 'price' => 1500
             ],
             [
-                'name'  => 'Regular ticket',
+                'name'  => 'Regular Ticket',
                 'price' => 2500
             ],
             [
-                'name'  => 'Group ticket',
+                'name'  => 'Group Ticket',
                 'price' => 3500
             ],
         ];
