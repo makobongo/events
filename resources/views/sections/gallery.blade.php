@@ -9,7 +9,7 @@
     <div class="owl-carousel gallery-carousel">
         @foreach ($galleries as $gallery)
             <a href="#" class="venobox" data-gall="gallery-carousel">
-                <img src="{{ asset('storage/gallery/'.$gallery->name) }}" alt="{{ $gallery->name }}">
+                <img src="{{ asset('img/gallery/'.$gallery->name) }}" alt="{{ $gallery->name }}">
             </a>
         @endforeach
     </div>
