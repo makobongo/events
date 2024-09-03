@@ -2,8 +2,8 @@
 
     <div class="container">
         <div class="section-header">
-            <h2>Gallery</h2>
-            <p>Check our gallery from the recent events</p>
+            <h2>Events Highlights</h2>
+            <p>checkout our hightlights</p>
         </div>
     </div>
     <div class="owl-carousel gallery-carousel">
