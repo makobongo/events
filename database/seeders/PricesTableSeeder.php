@@ -16,15 +16,15 @@ class PricesTableSeeder extends Seeder
         $prices = [
             [
                 'name'  => 'Early Bird Ticket',
-                'price' => 1500
+                'price' => 1250
             ],
             [
                 'name'  => 'Regular Ticket',
-                'price' => 2500
+                'price' => 1500
             ],
             [
                 'name'  => 'Group Ticket',
-                'price' => 3500
+                'price' => 6800
             ],
         ];
 
