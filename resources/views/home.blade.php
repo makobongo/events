@@ -8,15 +8,15 @@
 
   @include('sections.speakers')
 
-  @include('sections.schedule')
-
-  @include('sections.venues')
-
-  @include('sections.hotels')
-
   @include('sections.gallery')
+  
+  @include('sections.venues')
+  
+  <!-- @include('sections.hotels') -->
+  
+  <!-- @include('sections.schedule') -->
 
-  @include('sections.sponsors')
+  <!-- @include('sections.sponsors') -->
 
   @include('sections.faq')
 
