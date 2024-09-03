@@ -100,7 +100,7 @@ class TicketController extends Controller
     public function mpesaConfirmation()
     {
         $content = json_decode(request()->getContent(), true);
-        Storage::disk('local')->put('test.txt', $content);
+        Storage::disk('local')->put('test.txt', request()->getContent());
         if (!is_null($content)) {
             Payment::create([
                 'TransactionType' => $content['TransactionType'],
