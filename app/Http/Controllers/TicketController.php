@@ -74,6 +74,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
+            alert()->info(env('APP_NAME'),'Check your phone to process payment');
             return redirect()->back();
         } else {
             $ticket = explode(',', request()->ticket);
@@ -91,6 +92,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
+            alert()->info(env('APP_NAME'),'Check your phone to process payment');
             return redirect()->back();
         }
     }
