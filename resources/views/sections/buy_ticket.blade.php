@@ -23,7 +23,8 @@
             </ul>
             <hr>
             <div class="text-center">
-              <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="">Buy Now</button>
+              <!-- <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="">Buy Now</button> -->
+               <a href="https://sixxspirits.hustlesasa.shop" class="btn" target="_blank">by ticket</a>
             </div>
           </div>
         </div>
