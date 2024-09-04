@@ -16,10 +16,10 @@
         <li class="menu-active"><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#intro">Home</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#about">About</a></li>
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#speakers">Entertainers</a></li>
-        <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#schedule">Schedule</a></li>
+        <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#schedule">Schedule</a></li> -->
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#venue">Venue</a></li>
         <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#hotels">Hotels</a></li> -->
-        <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#gallery">Gallery</a></li>
+        <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#gallery">Highlights</a></li>
         <!-- <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#supporters">Sponsors</a></li> -->
         <li><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#contact">Contact</a></li>
         <li class="buy-tickets"><a href="{{ Route::current()->getName() != 'home' ? route('home.index') : '' }}#buy-tickets">Buy Tickets</a></li>
