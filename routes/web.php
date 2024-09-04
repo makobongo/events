@@ -30,4 +30,4 @@ Route::post('validation', [TicketController::class, 'mpesaValidation']);
 Route::get('test', function(){
    return bcrypt('password');
 });
-Auth::routes();
+// Auth::routes();
