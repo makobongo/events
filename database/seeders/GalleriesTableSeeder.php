@@ -13,7 +13,7 @@ class GalleriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach(range(1,6) as $id)
+        foreach(range(1,14) as $id)
         {
             Gallery::create([
                 'name' => $id.'.jpg'
