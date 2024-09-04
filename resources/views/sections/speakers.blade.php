@@ -1,4 +1,4 @@
-<section id="speakers" class="wow fadeInUp">
+<section id="speakers" class="wow fadeInUp" style="background-image: url('img/SIXX LOGO-01.jpg');">
   <div class="container">
     <div class="section-header">
       <h2>Event DJs</h2>
