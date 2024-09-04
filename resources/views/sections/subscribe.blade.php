@@ -2,7 +2,7 @@
   <div class="container wow fadeInUp">
     <div class="section-header">
       <h2>Newsletter</h2>
-      <p>Rerum numquam illum recusandae quia mollitia consequatur.</p>
+      <p>Subscribe to receive regular {{env('APP_NAME')}} updates.</p>
     </div>
 
     <form method="POST" action="#">
