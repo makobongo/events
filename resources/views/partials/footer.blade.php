@@ -17,7 +17,7 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
             @guest
-              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('home.index') }}">Login</a></li>
             @endguest
             @auth
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
@@ -34,7 +34,7 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
             @guest
-              <li><i class="fa fa-angle-right"></i> <a href="{{ route('login') }}">Login</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{{ route('home.index') }}">Login</a></li>
             @endguest
             @auth
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('admin.home') }}">Admin Panel</a></li>
