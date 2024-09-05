@@ -14,6 +14,7 @@ use PDF;
 use Alert;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use AfricasTalking\SDK\AfricasTalking;
 
 class TicketController extends Controller
 {
@@ -74,7 +75,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
-            alert()->info(env('APP_NAME'),'Check your phone to process payment');
+            alert()->info(env('APP_NAME'), 'Check your phone to process payment');
             return redirect()->back();
         } else {
             $ticket = explode(',', request()->ticket);
@@ -92,7 +93,7 @@ class TicketController extends Controller
                 'ticket_cost' => $ticket_cost,
             ]);
             $this->stkPush();
-            alert()->info(env('APP_NAME'),'Check your phone to process payment');
+            alert()->info(env('APP_NAME'), 'Check your phone to process payment');
             return redirect()->back();
         }
     }
@@ -119,29 +120,29 @@ class TicketController extends Controller
                 'ticket_number' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
                 'ticket_is_valid' => true
             ]);
-                $client = Client::where('phone', '0' . substr($content['MSISDN'], -9, 12))->first();
-                $data = [
-                    'first_name' => $client->first_name,
-                    'last_name' => $client->last_name,
-                    'phone' => $client->phone,
-                    'number_of_ticket' => $client->number_of_ticket,
-                    'name_of_ticket' => $client->name_of_ticket,
-                    'ticket_cost' => $client->ticket_cost,
-                ];
-                $this->generatePDF($data);
-                $filePath = public_path($data['phone'] . '.pdf');
-                if ($client->name_of_ticket == "Early Bird Ticket") {
-                    Mail::to($this->primary_email)
-                        ->send(new sendMail($data, $filePath));
-                }
-                if ($client->name_of_ticket == "Regular Ticket") {
-                    Mail::to($this->primary_email)
-                        ->send(new sendMail($client, $filePath));
-                }
-                if ($client->name_of_ticket == "Group Ticket") {
-                    Mail::to($this->primary_email)
-                        ->send(new sendMail($client, $filePath));
-                }
+            // $client = Client::where('phone', '0' . substr($content['MSISDN'], -9, 12))->first();
+            // $data = [
+            //     'first_name' => $client->first_name,
+            //     'last_name' => $client->last_name,
+            //     'phone' => $client->phone,
+            //     'number_of_ticket' => $client->number_of_ticket,
+            //     'name_of_ticket' => $client->name_of_ticket,
+            //     'ticket_cost' => $client->ticket_cost,
+            // ];
+            // $this->generatePDF($data);
+            // $filePath = public_path($data['phone'] . '.pdf');
+            // if ($client->name_of_ticket == "Early Bird Ticket") {
+            //     Mail::to($this->primary_email)
+            //         ->send(new sendMail($data, $filePath));
+            // }
+            // if ($client->name_of_ticket == "Regular Ticket") {
+            //     Mail::to($this->primary_email)
+            //         ->send(new sendMail($client, $filePath));
+            // }
+            // if ($client->name_of_ticket == "Group Ticket") {
+            //     Mail::to($this->primary_email)
+            //         ->send(new sendMail($client, $filePath));
+            // }
             // $data = [
             //     'title' => env('ACCOUNT_INIT') . ' EVENT TICKET',
             //     'first_name' => $content['FirstName'],
@@ -257,5 +258,43 @@ class TicketController extends Controller
             'AccountReference' => env('ACCOUNT_REF_NAME'),
             'TransactionDesc' => env('TRANSACTION_DESC')
         ])->json();
+    }
+
+    public function sendSms()
+    {
+        // Set your app credentials
+        $username   = env('AFRICAISTALKING_USERNAME');
+        $apiKey     = env('AFRICAISTALKING_API_KEY');
+
+        // Initialize the SDK
+        $AT         = new AfricasTalking($username, $apiKey);
+
+        // Get the SMS service
+        $sms        = $AT->sms();
+
+        // Set the numbers you want to send to in international format
+        // $recipients = "+254711XXXYYY,+254733YYYZZZ";
+        $recipients = +254715096287;
+
+        // Set your message
+        $message    = "sixx spirits testing";
+
+        // Set your shortCode or senderId
+        $from       = env('SMS_FROM');
+
+        try {
+            // Thats it, hit send and we'll take care of the rest
+            $result = $sms->send([
+                'to'      => $recipients,
+                'message' => $message,
+                'from'    => $from
+            ]);
+
+            return response()->json([
+                'msg'=>$result
+            ]);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 }
