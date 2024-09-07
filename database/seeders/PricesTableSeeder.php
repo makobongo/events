@@ -20,7 +20,7 @@ class PricesTableSeeder extends Seeder
             ],
             [
                 'name'  => 'Regular Ticket',
-                'price' => 1500
+                'price' => 1766
             ],
             [
                 'name'  => 'Group Ticket',
