@@ -68,8 +68,8 @@
     <div class="copyright">
       &copy; Copyright <strong>{{ env('APP_NAME', 'TheEvent') }}</strong>. All Rights Reserved
     </div>
-    <div class="credits">
+    <!-- <div class="credits">
       Designed by <a href="https://sbong.xyz">sbong</a>
-    </div>
+    </div> -->
   </div>
 </footer><!-- #footer -->
