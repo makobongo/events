@@ -16,8 +16,8 @@ class VenuesTableSeeder extends Seeder
         $venue = Venue::create([
             'name'          => 'Coopers Ring ASK Show Ground',
             'address'       => '00100 Nairobi',
-            'latitude'      => '-1.3155358296492337',
-            'longitude'     => '36.918241038449764',
+            'latitude'      => '-1.308495',
+            'longitude'     => '36.766970',
             'description'   =>  '.'
         ]);
     }
