@@ -6,7 +6,7 @@
         <a href="{{ route('home.index') }}#intro">
           <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
           <!-- {{ env('APP_NAME', 'The Event') }} -->
-            <img src="{{ env('APP_LOGO') }}"/>
+            <img src="{{ env('APP_LOGO') }}" height="100px"/>
         </a>
       </h1>
     </div>
