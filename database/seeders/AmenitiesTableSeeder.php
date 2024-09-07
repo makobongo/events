@@ -21,7 +21,7 @@ class AmenitiesTableSeeder extends Seeder
                 'name' => 'Regular Entry for Over 18 years'
             ],
             [
-                'name' => 'Welcome Cocktail 3-SIXX pm'
+                'name' => 'Cocktail 3-SIXX pm'
             ],
             [
                 'name' => 'Music and Entertainment'
