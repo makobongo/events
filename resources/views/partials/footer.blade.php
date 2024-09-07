@@ -14,8 +14,8 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li> -->
+            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li> -->
             @guest
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('home.index') }}">Login</a></li>
             @endguest
@@ -31,8 +31,8 @@
             <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
             <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li> -->
+            <!-- <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li> -->
             @guest
               <li><i class="fa fa-angle-right"></i> <a href="{{ route('home.index') }}">Login</a></li>
             @endguest
