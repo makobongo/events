@@ -14,7 +14,7 @@ class VenuesTableSeeder extends Seeder
     public function run()
     {
         $venue = Venue::create([
-            'name'          => 'SIXX QUARRY',
+            'name'          => 'Coopers Ring ASK Show Ground',
             'address'       => '00100 Nairobi',
             'latitude'      => '-1.3155358296492337',
             'longitude'     => '36.918241038449764',
