@@ -60,7 +60,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_twitter',
-                'value' => '#'
+                'value' => 'https://x.com/sixx6spirits'
             ],
             [
                 'key'   => 'footer_facebook',
