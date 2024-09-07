@@ -16,11 +16,11 @@ class AmenityPriceTableSeeder extends Seeder
         $prices = [
             [
                 'id' => 1,
-                'amenities' => [1, 2, 3]
+                'amenities' => [1, 2, 3, 4, 5]
             ],
             [
                 'id' => 2,
-                'amenities' => [1, 2, 3, 4]
+                'amenities' => [1, 2, 3, 4, 5]
             ],
             [
                 'id' => 3,

@@ -15,22 +15,22 @@ class AmenitiesTableSeeder extends Seeder
     {
         $amenities = [
             [
-                'name' => 'Regular Seating'
+                'name' => '16.6% discount off Regular Ticket'
             ],
             [
-                'name' => 'Coffee Break'
+                'name' => 'Regular Entry for Over 18 years'
             ],
             [
-                'name' => 'Custom Badge'
+                'name' => 'Welcome Cocktail 3-SIXXpm'
             ],
             [
-                'name' => 'Community Access'
+                'name' => 'Music and Entertainment'
             ],
             [
-                'name' => 'Workshop Access'
+                'name' => 'Terms and Conditions Apply'
             ],
             [
-                'name' => 'After Party'
+                'name' => '1 Bottle of SIXX SOCIAL Alcoholic Spirit'
             ],
         ];
 
