@@ -28,7 +28,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_description',
-                'value' => 'SIXX SOCIAL a place to meet up and enjoy the company of good friends'
+                'value' => '<strong style="color: yellow;">'.env('APP_NAME').'</strong> a place to meet up and enjoy the company of good friends'
             ],
             [
                 'key'   => 'about_where',
@@ -52,7 +52,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_description',
-                'value' => 'SIXX SOCIAL a place to meet up and enjoy the company of good friends.'
+                'value' => '<strong style="color: yellow;">'.env('APP_NAME').'</strong> a place to meet up and enjoy the company of good friends.'
             ],
             [
                 'key'   => 'footer_address',
