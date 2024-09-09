@@ -36,7 +36,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'about_when',
-                'value' => '14th September, 2024'
+                'value' => '14th September 2024'
             ],
             [
                 'key'   => 'contact_address',
