@@ -15,6 +15,12 @@ class AmenitiesTableSeeder extends Seeder
     {
         $amenities = [
             [
+                'name' => 'Covers 4 people.'
+            ],
+            [
+                'name' => 'Price for online tickets only. Gate price is ksh 2166 per person'
+            ],
+            [
                 'name' => '22.65% discount off Regular Ticket'
             ],
             [
