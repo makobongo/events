@@ -70,8 +70,8 @@ h6 {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #f82249;
-  color: #fff;
+  background: #FFFF00;
+  color: red;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -112,7 +112,7 @@ h6 {
   display: block;
   width: 60px;
   height: 5px;
-  background: #f82249;
+  background: #FFFF00;
   bottom: 0;
   left: calc(50% - 25px);
 }
@@ -173,7 +173,7 @@ h6 {
 }
 
 #header #logo h1 span {
-  color: #f82249;
+  color: #FFFF00;
 }
 
 #header #logo h1 a,
@@ -286,7 +286,7 @@ h6 {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #f82249;
+  background-color: #FFFF00;
   visibility: hidden;
   transition: all 0.3s ease-in-out 0s;
 }
@@ -299,11 +299,11 @@ h6 {
 }
 
 .nav-menu li.buy-tickets a {
-  color: #fff;
-  background: #f82249;
+  color: #000000;
+  background: #FFFF00;
   padding: 7px 22px;
   border-radius: 50px;
-  border: 2px solid #f82249;
+  border: 2px solid #FFFF00;
   transition: all ease-in-out 0.3s;
   font-weight: 500;
   margin-left: 8px;
@@ -411,7 +411,7 @@ h6 {
 }
 
 #mobile-nav ul li a:hover {
-  color: #f82249;
+  color: #FFFF00;
 }
 
 #mobile-nav ul li li {
@@ -609,15 +609,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   transition: 0.5s;
   line-height: 1;
   margin: 10px;
-  color: #fff;
+  color: #000000;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
-  border: 2px solid #f82249;
+  border: 2px solid #FFFF00;
 }
 
 #intro .about-btn:hover {
-  background: #f82249;
-  color: #fff;
+  background: #FFFF00;
+  color: #000000;
 }
 
 @-webkit-keyframes pulsate-btn {
@@ -740,7 +740,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #speakers .speaker .details a:hover {
-  color: #f82249;
+  color: #FFFF00;
 }
 
 #speakers .speaker:hover .details {
@@ -775,7 +775,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #speakers-details .details .social a:hover {
-  background: #f82249;
+  background: #FFFF00;
   color: #fff;
 }
 
@@ -1043,7 +1043,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #gallery .owl-dot.active {
-  background-color: #f82249;
+  background-color: #FFFF00;
 }
 
 #gallery .gallery-carousel .owl-stage-outer {
@@ -1051,7 +1051,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #gallery .gallery-carousel .center {
-  border: 6px solid #f82249;
+  border: 6px solid #FFFF00;
   margin: -10px;
   box-sizing: content-box;
   padding: 4px;
@@ -1193,8 +1193,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   border: 0;
   padding: 9px 25px;
   cursor: pointer;
-  background: #f82249;
-  color: #fff;
+  background: #FFFF00;
+  color: #000000	;
   transition: all 0.3s ease;
   outline: none;
   font-size: 14px;
@@ -1202,7 +1202,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #subscribe button:hover {
-  background: #e0072f;
+  background: #FFFF00;
 }
 
 /*--------------------------------------------------------------
@@ -1253,13 +1253,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 50px;
   padding: 10px 40px;
   transition: all 0.2s;
-  background-color: #f82249;
+  background-color: #FFFF00;
   border: 0;
-  color: #fff;
+  color: #000000;
 }
 
 #buy-tickets .card .btn:hover {
-  background-color: #e0072f;
+  background-color: #FFFF00;
 }
 
 #buy-tickets #buy-ticket-modal input,
@@ -1372,17 +1372,17 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form button[type="submit"] {
-  background: #f82249;
+  background: #FFFF00;
   border: 0;
   padding: 10px 40px;
-  color: #fff;
+  color: #000000;
   transition: 0.4s;
   border-radius: 50px;
   cursor: pointer;
 }
 
 #contact .form button[type="submit"]:hover {
-  background: #e0072f;
+  background: #FFC300;
 }
 
 /*--------------------------------------------------------------
@@ -1444,8 +1444,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #footer .footer-top .social-links a:hover {
-  background: #f82249;
-  color: #fff;
+  background: #FFFF00;
+  color: #000000;
 }
 
 #footer .footer-top h4 {
@@ -1455,7 +1455,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-transform: uppercase;
   position: relative;
   padding-bottom: 12px;
-  border-bottom: 2px solid #f82249;
+  border-bottom: 2px solid #FFFF00;
 }
 
 #footer .footer-top .footer-links {
@@ -1470,7 +1470,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 5px;
-  color: #f82249;
+  color: #FFFF00;
   font-size: 18px;
 }
 
@@ -1488,7 +1488,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-  color: #f82249;
+  color: #FFFF00;
 }
 
 #footer .footer-top .footer-contact {
