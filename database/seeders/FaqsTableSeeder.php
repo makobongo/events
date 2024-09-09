@@ -16,7 +16,7 @@ class FaqsTableSeeder extends Seeder
     {
         $faqs = [
             [
-                'question'              => 'What kind of Event is the SIXX Social?',
+                'question'              => 'What kind of Event is the <span style="color:#FFC300;">'.env("APP_NAME").'</span>?',
                 'answer'       => 'It is a SIXX Spirits community afternoon and early evening Social Event to socialize and enjoy music with good friends'
             ],
             [
