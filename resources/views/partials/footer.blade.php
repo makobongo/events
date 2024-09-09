@@ -5,7 +5,7 @@
 
         <div class="col-lg-3 col-md-6 footer-info">
           <!-- <img src="img/logo.png" alt="TheEvenet"> -->
-          <h1 style="color:white;">{{ env('APP_NAME', 'The Event') }}</p>
+          <h2 style="color:yellow;">{{ env('APP_NAME', 'The Event') }}</h2>
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
