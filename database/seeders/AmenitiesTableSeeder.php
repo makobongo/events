@@ -21,7 +21,7 @@ class AmenitiesTableSeeder extends Seeder
                 'name' => 'Regular Entry for Over 18 years'
             ],
             [
-                'name' => '3 Free Shots from 3- SIXX pm'
+                'name' => '3 Free Shots from 3- SIXX pm, while the stocks last.'
             ],
             [
                 'name' => 'Music and Entertainment'
@@ -30,7 +30,7 @@ class AmenitiesTableSeeder extends Seeder
                 'name' => 'Terms and Conditions Apply'
             ],
             [
-                'name' => '1 Bottle of <span style="color:#FFC300;">'.env('APP_NAME').'</span> Alcoholic Spirit'
+                'name' => '1 Bottle of <span style="color:#FFC300;">'.env('APP_NAME').'</span> Alcoholic Spirit, while the stocks last.'
             ],
         ];
 
