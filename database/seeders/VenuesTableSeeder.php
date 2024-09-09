@@ -18,7 +18,7 @@ class VenuesTableSeeder extends Seeder
             'address'       => '00100 Nairobi',
             'latitude'      => '-1.308495',
             'longitude'     => '36.766970',
-            'description'   =>  '.'
+            'description'   =>  '14th September 2024'
         ]);
     }
 }
