@@ -33,7 +33,7 @@ class AmenitiesTableSeeder extends Seeder
                 'name' => 'Covers 4 people.'
             ],
             [
-                'name' => 'Price for online tickets only. Gate price is ksh 2166 per person'
+                'name' => 'Price for online tickets only. Gate price is KSH 2166 per person'
             ],
             [
                 'name' => '1 Bottle of <span style="color:#FFC300;">'.env('APP_NAME').'</span> Alcoholic Spirit, while the stocks last.'
