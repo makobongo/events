@@ -1,7 +1,7 @@
 <section id="subscribe">
   <div class="container wow fadeInUp">
     <div class="section-header">
-      <h2>Newsletter</h2>
+      <h2>News</h2>
       <p>Subscribe to receive regular <span style="color:#FFFF00;">{{env('APP_NAME')}}</span> updates.</p>
     </div>
 
