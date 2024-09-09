@@ -30,7 +30,7 @@ class AmenitiesTableSeeder extends Seeder
                 'name' => 'Terms and Conditions Apply'
             ],
             [
-                'name' => '1 Bottle of SIXX SOCIAL Alcoholic Spirit'
+                'name' => '1 Bottle of <span style="color:#FFC300;">'.env('APP_NAME').'</span> Alcoholic Spirit'
             ],
         ];
 
