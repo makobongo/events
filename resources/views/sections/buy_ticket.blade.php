@@ -3,7 +3,7 @@
 
     <div class="section-header">
       <h2>Buy Tickets</h2>
-      <p>Buy tickets for the {{ env('APP_NAME') }} event</p>
+      <p>Buy tickets for the <span style="color:#FFC300;">{{ env('APP_NAME') }}</span> event</p>
     </div>
 
     <div class="row">
@@ -17,7 +17,7 @@
             <ul class="fa-ul">
               @foreach($amenities as $amenity)
               <li @if(!$price->amenities->contains($amenity->id))class="text-muted"@endif>
-                <span class="fa-li"><i class="fa fa-{{ $price->amenities->contains($amenity->id) ? 'check' : 'times' }}"></i></span>{{ $amenity->name }}
+                <span class="fa-li"><i class="fa fa-{{ $price->amenities->contains($amenity->id) ? 'check' : 'times' }}"></i></span>{!! $amenity->name !!}
               </li>
               @endforeach
             </ul>
