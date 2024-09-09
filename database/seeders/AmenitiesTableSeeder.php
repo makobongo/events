@@ -15,7 +15,7 @@ class AmenitiesTableSeeder extends Seeder
     {
         $amenities = [
             [
-                'name' => '16.6% discount off Regular Ticket'
+                'name' => '22.65% discount off Regular Ticket'
             ],
             [
                 'name' => 'Regular Entry for Over 18 years'
