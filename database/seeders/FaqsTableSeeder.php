@@ -16,8 +16,12 @@ class FaqsTableSeeder extends Seeder
     {
         $faqs = [
             [
-                'question'              => 'What kind of Event is the <span style="color:#FFC300;">'.env("APP_NAME").'</span>?',
-                'answer'       => 'It is a SIXX Spirits community afternoon and early evening Social Event to socialize and enjoy music with good friends'
+                'question'              => 'What kind of Event is the <span style="color:#FFC300;">' . env("APP_NAME") . '</span>?',
+                'answer'       => 'It is a SIXX Spirits community afternoon and early evening Social Event to socialize and enjoy great music, good food, fun and games with good friends.'
+            ],
+            [
+                'question' => 'Can I attend the event if I am below 18 years of Age accompanying an Adult?',
+                'answer' => 'NO. The event is strictly for Adults over the Age of 18. Proof of identification will be required.'
             ],
             [
                 'question'              => 'How do I pay for the ticket?',
@@ -40,8 +44,7 @@ class FaqsTableSeeder extends Seeder
                 'answer'       => 'NO Animals are allowed at the event'
             ]
         ];
-        foreach($faqs as $faq)
-        {
+        foreach ($faqs as $faq) {
             $speaker = Faq::create($faq);
         }
     }
