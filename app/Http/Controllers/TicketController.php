@@ -123,6 +123,7 @@ class TicketController extends Controller
                 'ticket_is_valid' => true
             ]);
             Mail::to($this->primary_email)
+            // ->cc(['stevewanjau@sixx-spirits.com', 'wambuiwanjau@sixx-spirits.com', 'winniemaina@sixx-spirits.com'])
             ->send(new sendPaymentNotification($data));
         } else {
             return response()->json([
