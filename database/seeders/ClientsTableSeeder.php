@@ -16,12 +16,13 @@ class ClientsTableSeeder extends Seeder
     {
         $faker = Factory::create();
         Client::create([
-            'first_name' => $faker->firstName(),
-            'second_name' => $faker->lastName(),
-            'email' => $faker->safeEmail(),
-            'phone' => $faker->numerify('2547######'),
+            'first_name' => 'Steve',
+            'second_name' => 'Obongo',
+            'email' => 'autoassured@gmail.com',
+            'phone' => 254715096287,
+            'sha_phone'=>'988caf8d9f287296ce58e6b62c0c56a511a5d65a450cee4c0e95765da8da1df6',
             'number_of_ticket' => 1,
-            'name_of_ticket' => 'Early Bird Ticket',
+            'name_of_ticket' => 'Advance Regular Ticket',
             'ticket_cost' => 1500,
             'is_valid' => $faker->randomElement([false, true])
         ]);
