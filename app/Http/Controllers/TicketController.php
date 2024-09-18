@@ -272,7 +272,7 @@ class TicketController extends Controller
         $recipients = $phone;
 
         // Set your message
-        $message = "Hello, ".$firstname." We confirm receipt of Ksh ".$amount. " which has been paid to ".env("APP_NAME") ." Regards ";
+        $message = "Hello, ".$firstname." We confirm receipt of Ksh ".$amount. " which has been paid to ".env("APP_NAME") ." .For any queries call ".env("CONTACT_NUMBER")."  Regards ";
 
         // Set your shortCode or senderId
         $from       = env('SMS_FROM');
