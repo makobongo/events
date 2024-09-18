@@ -132,7 +132,7 @@ class TicketController extends Controller
                 ->select('clients.*', 'payments.TransAmount')
                 ->orderBy('payments.created_at', 'DESC')->first();
             //Sending SMS to clients
-            $this->sendSms($client->phone, $client->first_name, $client->ticket_cost);
+            $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
             $data = [
                 'first_name' => $client->first_name,
                 'last_name' => $client->last_name,
