@@ -221,7 +221,8 @@ class TicketController extends Controller
     {
         $pdf = PDF::loadView('mail.email', $data)->setPaper([0, 0, 300, 516], 'portrait');
         $pdf->render();
-        file_put_contents($data['phone'] . '.pdf', $pdf->output());
+        Storage::put($data['phone'] . '.pdf', $pdf->output());
+        // file_put_contents($data['phone'] . '.pdf', $pdf->output());
     }
 
     public function stkPush()
