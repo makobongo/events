@@ -143,7 +143,7 @@ class TicketController extends Controller
                     'ticket_cost' => $client->ticket_cost,
                 ];
                 $this->generatePDF($data);
-                $filePath = public_path($client->phone. '.pdf');
+                $filePath = public_path($client. '.pdf');
                 if ($client->name_of_ticket == "Advance Early Bird Ticket") {
                     Mail::to($this->primary_email)
                         ->cc($client->email)
