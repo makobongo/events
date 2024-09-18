@@ -15,7 +15,10 @@ use Alert;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use AfricasTalking\SDK\AfricasTalking;
+use App\Mail\sendEarlyTicket;
+use App\Mail\sendGroupTicket;
 use App\Mail\sendPaymentNotification;
+use App\Mail\sendRegularTicket;
 
 class TicketController extends Controller
 {
@@ -63,13 +66,14 @@ class TicketController extends Controller
     }
     public function lipaNaMpesaOnline()
     {
-        if (Client::where('phone', request()->phone)->exists()) {
+        $phone = sprintf('254%s', substr(request()->phone, 1, 9));
+        if (Client::where('phone', $phone)->exists()) {
             $ticket = explode(',', request()->ticket);
             $name_of_ticket = $ticket[1];
             $cost_of_a_ticket = (int) $ticket[0];
             $number_of_tickets = request()->number_of_tickets;
             $ticket_cost = $cost_of_a_ticket * $number_of_tickets;
-            Client::where('phone', request()->phone)->update([
+            Client::where('phone', $phone)->update([
                 'email' => request()->email,
                 'number_of_ticket' => request()->number_of_tickets,
                 'name_of_ticket' => $name_of_ticket,
@@ -88,7 +92,8 @@ class TicketController extends Controller
                 'first_name' => request()->first_name,
                 'second_name' => request()->second_name,
                 'email' => request()->email,
-                'phone' => request()->phone,
+                'phone' => $phone,
+                'sha_phone' => hash('sha256', $phone),
                 'number_of_ticket' => $number_of_tickets,
                 'name_of_ticket' => $name_of_ticket,
                 'ticket_cost' => $ticket_cost,
@@ -104,7 +109,7 @@ class TicketController extends Controller
         $content = file_get_contents('php://input');
         Storage::disk('local')->put('test.txt', request()->getContent());
         $data = json_decode($content, true);
-        if(!is_null($data)){
+        if (!is_null($data)) {
             Payment::create([
                 'TransactionType' => $data['TransactionType'],
                 'TransID' => $data['TransID'],
@@ -122,84 +127,40 @@ class TicketController extends Controller
                 'ticket_number' => env('ACCOUNT_INIT') . '-' . $data['TransID'],
                 'ticket_is_valid' => true
             ]);
-            Mail::to($this->primary_email)
-            ->cc(['stevewanjau@sixx-spirits.com', 'wambuiwanjau@sixx-spirits.com', 'winniemaina@sixx-spirits.com'])
-            ->send(new sendPaymentNotification($data));
+            // matching records
+            $client = Payment::join('clients', 'payments.MSISDN', '=', 'clients.sha_phone')
+                ->select('clients.*', 'payments.TransAmount')
+                ->orderBy('payments.created_at', 'DESC')->first();
+            $data = [
+                'first_name' => $client->first_name,
+                'last_name' => $client->last_name,
+                'phone' => $client->phone,
+                'number_of_ticket' => $client->number_of_ticket,
+                'name_of_ticket' => $client->name_of_ticket,
+                'ticket_cost' => $client->ticket_cost,
+            ];
+            $this->generatePDF($data);
+            $filePath = public_path($data['phone'] . '.pdf');
+            if ($client->name_of_ticket == "Advance Early Bird Ticket") {
+                Mail::to($this->primary_email)
+                    ->cc($client->email)
+                    ->send(new sendEarlyTicket($data, $filePath));
+            }
+            if ($client->name_of_ticket == "Advance Regular Ticket") {
+                Mail::to($this->primary_email)
+                    ->cc($client->email)
+                    ->send(new sendRegularTicket($client, $filePath));
+            }
+            if ($client->name_of_ticket == "Advance Group Ticket") {
+                Mail::to($this->primary_email)
+                    ->cc($client->email)
+                    ->send(new sendGroupTicket($client, $filePath));
+            }
         } else {
             return response()->json([
-                'msg'=> 'No data available'
+                'msg' => 'No data available'
             ]);
         }
-        // $content = json_decode(request()->getContent(), true);
-        // return response()->json([
-        //     'msg'=>$content['TransactionType']
-        // ]);
-        // if (!is_null($content)) {
-        //     Payment::create([
-        //         'TransactionType' => $content['TransactionType'],
-        //         'TransID' => $content['TransID'],
-        //         'TransTime' => date('Y-m-d H:i:s', strtotime($content['TransTime'])),
-        //         'TransAmount' => $content['TransAmount'],
-        //         'BusinessShortCode' => $content['BusinessShortCode'],
-        //         'BillRefNumber' => $content['BillRefNumber'],
-        //         'InvoiceNumber' => $content['InvoiceNumber'],
-        //         'OrgAccountBalance' => $content['OrgAccountBalance'],
-        //         'ThirdPartyTransID' => $content['ThirdPartyTransID'],
-        //         'MSISDN' => $content['MSISDN'],
-        //         'FirstName' => $content['FirstName'],
-        //         'MiddleName' => $content['MiddleName'],
-        //         'LastName' => $content['LastName'],
-        //         'ticket_number' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
-        //         'ticket_is_valid' => true
-        //     ]);
-        // $client = Client::where('phone', '0' . substr($content['MSISDN'], -9, 12))->first();
-        // $data = [
-        //     'first_name' => $client->first_name,
-        //     'last_name' => $client->last_name,
-        //     'phone' => $client->phone,
-        //     'number_of_ticket' => $client->number_of_ticket,
-        //     'name_of_ticket' => $client->name_of_ticket,
-        //     'ticket_cost' => $client->ticket_cost,
-        // ];
-        // $this->generatePDF($data);
-        // $filePath = public_path($data['phone'] . '.pdf');
-        // if ($client->name_of_ticket == "Early Bird Ticket") {
-        //     Mail::to($this->primary_email)
-        //         ->send(new sendMail($data, $filePath));
-        // }
-        // if ($client->name_of_ticket == "Regular Ticket") {
-        //     Mail::to($this->primary_email)
-        //         ->send(new sendMail($client, $filePath));
-        // }
-        // if ($client->name_of_ticket == "Group Ticket") {
-        //     Mail::to($this->primary_email)
-        //         ->send(new sendMail($client, $filePath));
-        // }
-        // $data = [
-        //     'title' => env('ACCOUNT_INIT') . ' EVENT TICKET',
-        //     'first_name' => $content['FirstName'],
-        //     'second_name' => $content['LastName'],
-        //     'phone' => $content['MSISDN'],
-        //     'ticket_code' => env('ACCOUNT_INIT') . '-' . $content['TransID'],
-        //     'paid_amount' => $content['TransAmount']
-        // ];
-        // $pdf = PDF::loadView('pdf.ticket', $data)->setPaper([0, 0, 396, 612], 'landscape');
-        // $pdf->render();
-        // file_put_contents($content['TransID'] . '.pdf', $pdf->output());
-        // $filePath = public_path($content['TransID'] . '.pdf');
-        // // //sending email
-        // Mail::to($this->primary_email)
-        //     // ->cc(explode(",",$this->secondary_emails))
-        //     ->send(new sendMail($content, $filePath));
-        // // response
-        // return response()->json([
-        //     'msg' => 'success'
-        // ]);
-        // } else {
-        //     return response()->json([
-        //         'msg' => 'data not available!'
-        //     ]);
-        // }
     }
 
     public function mpesaValidation()
