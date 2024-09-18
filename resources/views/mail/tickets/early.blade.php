@@ -5,7 +5,7 @@
     <title>env('APP_NAME')</title>
     <style>
         .backg {
-            background-image: url('img/early-bird-ticket.png');
+            background-image: url("img/advance-early-bird-ticket.png");
             background-size: 100%;
             background-repeat: no-repeat;
             width: 100%;
