@@ -142,8 +142,8 @@ class TicketController extends Controller
                     'name_of_ticket' => $client->name_of_ticket,
                     'ticket_cost' => $client->ticket_cost,
                 ];
-                $this->generatePDF($data);
-                $filePath = public_path($client. '.pdf');
+                $this->generatePDF($data, $client->phone);
+                $filePath = public_path($client->phone.'.pdf');
                 if ($client->name_of_ticket == "Advance Early Bird Ticket") {
                     Mail::to($this->primary_email)
                         ->cc($client->email)
@@ -187,41 +187,41 @@ class TicketController extends Controller
     /**
      * Process the callback data sent to this endpoint
      */
-    public function lipaNaMpesaCallback(Request $requests)
-    {
-        $callBackdata = file_get_contents('php://input');
-        $data = json_decode($callBackdata, true);
-        if ($data["Body"]["stkCallback"]["ResultCode"] == 0) {
-            $client = Client::where('phone', '0' . substr($data["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3]["Value"], -9, 12))->first();
-            $data = [
-                'first_name' => $client->first_name,
-                'last_name' => $client->last_name,
-                'phone' => $client->phone,
-                'number_of_ticket' => $client->number_of_ticket,
-                'name_of_ticket' => $client->name_of_ticket,
-                'ticket_cost' => $client->ticket_cost,
-            ];
-            $this->generatePDF($data);
-            $filePath = public_path($data['phone'] . '.pdf');
-            if ($client->name_of_ticket == "Early Bird Ticket") {
-                Mail::to($this->primary_email)
-                    ->send(new sendMail($data, $filePath));
-            }
-            if ($client->name_of_ticket == "Regular Ticket") {
-                Mail::to($this->primary_email)
-                    ->send(new sendMail($client, $filePath));
-            }
-            if ($client->name_of_ticket == "Group Ticket") {
-                Mail::to($this->primary_email)
-                    ->send(new sendMail($client, $filePath));
-            }
-        }
-    }
-    public function generatePDF($data)
+    // public function lipaNaMpesaCallback(Request $requests)
+    // {
+    //     $callBackdata = file_get_contents('php://input');
+    //     $data = json_decode($callBackdata, true);
+    //     if ($data["Body"]["stkCallback"]["ResultCode"] == 0) {
+    //         $client = Client::where('phone', '0' . substr($data["Body"]["stkCallback"]["CallbackMetadata"]["Item"][3]["Value"], -9, 12))->first();
+    //         $data = [
+    //             'first_name' => $client->first_name,
+    //             'last_name' => $client->last_name,
+    //             'phone' => $client->phone,
+    //             'number_of_ticket' => $client->number_of_ticket,
+    //             'name_of_ticket' => $client->name_of_ticket,
+    //             'ticket_cost' => $client->ticket_cost,
+    //         ];
+    //         $this->generatePDF($data);
+    //         $filePath = public_path($data['phone'] . '.pdf');
+    //         if ($client->name_of_ticket == "Early Bird Ticket") {
+    //             Mail::to($this->primary_email)
+    //                 ->send(new sendMail($data, $filePath));
+    //         }
+    //         if ($client->name_of_ticket == "Regular Ticket") {
+    //             Mail::to($this->primary_email)
+    //                 ->send(new sendMail($client, $filePath));
+    //         }
+    //         if ($client->name_of_ticket == "Group Ticket") {
+    //             Mail::to($this->primary_email)
+    //                 ->send(new sendMail($client, $filePath));
+    //         }
+    //     }
+    // }
+    public function generatePDF($data, $phone)
     {
         $pdf = PDF::loadView('mail.email', $data)->setPaper([0, 0, 300, 516], 'portrait');
         $pdf->render();
-        file_put_contents($data['phone'] . '.pdf', $pdf->output());
+        file_put_contents($phone.'.pdf', $pdf->output());
     }
 
     public function stkPush()
