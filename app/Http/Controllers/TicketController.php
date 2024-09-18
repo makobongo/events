@@ -110,53 +110,57 @@ class TicketController extends Controller
         Storage::disk('local')->put('test.txt', request()->getContent());
         $data = json_decode($content, true);
         if (!is_null($data)) {
-            Payment::create([
-                'TransactionType' => $data['TransactionType'],
-                'TransID' => $data['TransID'],
-                'TransTime' => date('Y-m-d H:i:s', strtotime($data['TransTime'])),
-                'TransAmount' => $data['TransAmount'],
-                'BusinessShortCode' => $data['BusinessShortCode'],
-                'BillRefNumber' => $data['BillRefNumber'],
-                'InvoiceNumber' => $data['InvoiceNumber'],
-                'OrgAccountBalance' => $data['OrgAccountBalance'],
-                'ThirdPartyTransID' => $data['ThirdPartyTransID'],
-                'MSISDN' => $data['MSISDN'],
-                'FirstName' => $data['FirstName'],
-                // 'MiddleName' => $data['MiddleName'],
-                // 'LastName' => $data['LastName'],
-                'ticket_number' => env('ACCOUNT_INIT') . '-' . $data['TransID'],
-                'ticket_is_valid' => true
-            ]);
-            // matching records
-            $client = Payment::join('clients', 'payments.MSISDN', '=', 'clients.sha_phone')
-                ->select('clients.*', 'payments.TransAmount')
-                ->orderBy('payments.created_at', 'DESC')->first();
-            //Sending SMS to clients
-            $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
-            $data = [
-                'first_name' => $client->first_name,
-                'last_name' => $client->last_name,
-                'phone' => $client->phone,
-                'number_of_ticket' => $client->number_of_ticket,
-                'name_of_ticket' => $client->name_of_ticket,
-                'ticket_cost' => $client->ticket_cost,
-            ];
-            $this->generatePDF($data);
-            $filePath = public_path($data['phone'] . '.pdf');
-            if ($client->name_of_ticket == "Advance Early Bird Ticket") {
-                Mail::to($this->primary_email)
-                    ->cc($client->email)
-                    ->send(new sendEarlyTicket($data, $filePath));
-            }
-            if ($client->name_of_ticket == "Advance Regular Ticket") {
-                Mail::to($this->primary_email)
-                    ->cc($client->email)
-                    ->send(new sendRegularTicket($client, $filePath));
-            }
-            if ($client->name_of_ticket == "Advance Group Ticket") {
-                Mail::to($this->primary_email)
-                    ->cc($client->email)
-                    ->send(new sendGroupTicket($client, $filePath));
+            try {
+                Payment::create([
+                    'TransactionType' => $data['TransactionType'],
+                    'TransID' => $data['TransID'],
+                    'TransTime' => date('Y-m-d H:i:s', strtotime($data['TransTime'])),
+                    'TransAmount' => $data['TransAmount'],
+                    'BusinessShortCode' => $data['BusinessShortCode'],
+                    'BillRefNumber' => $data['BillRefNumber'],
+                    'InvoiceNumber' => $data['InvoiceNumber'],
+                    'OrgAccountBalance' => $data['OrgAccountBalance'],
+                    'ThirdPartyTransID' => $data['ThirdPartyTransID'],
+                    'MSISDN' => $data['MSISDN'],
+                    'FirstName' => $data['FirstName'],
+                    // 'MiddleName' => $data['MiddleName'],
+                    // 'LastName' => $data['LastName'],
+                    'ticket_number' => env('ACCOUNT_INIT') . '-' . $data['TransID'],
+                    'ticket_is_valid' => true
+                ]);
+                // matching records
+                $client = Payment::join('clients', 'payments.MSISDN', '=', 'clients.sha_phone')
+                    ->select('clients.*', 'payments.TransAmount')
+                    ->orderBy('payments.created_at', 'DESC')->first();
+                //Sending SMS to clients
+                $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
+                $data = [
+                    'first_name' => $client->first_name,
+                    'last_name' => $client->last_name,
+                    'phone' => $client->phone,
+                    'number_of_ticket' => $client->number_of_ticket,
+                    'name_of_ticket' => $client->name_of_ticket,
+                    'ticket_cost' => $client->ticket_cost,
+                ];
+                $this->generatePDF($data);
+                $filePath = public_path($data['phone'] . '.pdf');
+                if ($client->name_of_ticket == "Advance Early Bird Ticket") {
+                    Mail::to($this->primary_email)
+                        ->cc($client->email)
+                        ->send(new sendEarlyTicket($data, $filePath));
+                }
+                if ($client->name_of_ticket == "Advance Regular Ticket") {
+                    Mail::to($this->primary_email)
+                        ->cc($client->email)
+                        ->send(new sendRegularTicket($client, $filePath));
+                }
+                if ($client->name_of_ticket == "Advance Group Ticket") {
+                    Mail::to($this->primary_email)
+                        ->cc($client->email)
+                        ->send(new sendGroupTicket($client, $filePath));
+                }
+            } catch (\Exception $e) {
+                return $e->getMessage();
             }
         } else {
             return response()->json([
@@ -272,7 +276,7 @@ class TicketController extends Controller
         $recipients = $phone;
 
         // Set your message
-        $message = "Hello, ".$firstname." We confirm receipt of Ksh ".$amount. " which has been paid to ".env("APP_NAME") ." .For any queries call ".env("CONTACT_NUMBER")."  Regards ";
+        $message = "Hello, " . $firstname . " We confirm receipt of Ksh " . $amount . " which has been paid to " . env("APP_NAME") . " .For any queries call " . env("CONTACT_NUMBER") . "  Regards ";
 
         // Set your shortCode or senderId
         $from       = env('SMS_FROM');
