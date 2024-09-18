@@ -11,7 +11,12 @@
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">{!! $price->name !!}</h5>
+            <h5 class="card-title text-muted text-uppercase text-center">
+              @if($price->name == 'Advance Early Bird Ticket')
+              <button style="background-color: red;color:black;">sold out</button>
+              @endif
+              {!! $price->name !!}
+            </h5>
             <h6 class="card-price text-center">Ksh {{ number_format($price->price) }}</h6>
             <hr>
             <ul class="fa-ul">
