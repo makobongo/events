@@ -15,15 +15,15 @@ class ClientsTableSeeder extends Seeder
     public function run(): void
     {
         $faker = Factory::create();
-            Client::create([
-                'first_name' => $faker->firstName(),
-                'second_name' => $faker->lastName(),
-                'email' => $faker->safeEmail(),
-                'phone' => $faker->numerify('2547######'),
-                'number_of_ticket' => 1,
-                'name_of_ticket' => 'Early Bird Ticket',
-                'ticket_cost' => 1500,
-                'is_valid' => $faker->randomElement([false, true])
-            ]);
+        Client::create([
+            'first_name' => $faker->firstName(),
+            'second_name' => $faker->lastName(),
+            'email' => $faker->safeEmail(),
+            'phone' => $faker->numerify('2547######'),
+            'number_of_ticket' => 1,
+            'name_of_ticket' => 'Early Bird Ticket',
+            'ticket_cost' => 1500,
+            'is_valid' => $faker->randomElement([false, true])
+        ]);
     }
 }
