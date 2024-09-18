@@ -123,8 +123,6 @@ class TicketController extends Controller
                     'ThirdPartyTransID' => $data['ThirdPartyTransID'],
                     'MSISDN' => $data['MSISDN'],
                     'FirstName' => $data['FirstName'],
-                    // 'MiddleName' => $data['MiddleName'],
-                    // 'LastName' => $data['LastName'],
                     'ticket_number' => env('ACCOUNT_INIT') . '-' . $data['TransID'],
                     'ticket_is_valid' => true
                 ]);
@@ -133,7 +131,7 @@ class TicketController extends Controller
                     ->select('clients.*', 'payments.TransAmount')
                     ->orderBy('payments.created_at', 'DESC')->first();
                 //Sending SMS to clients
-                $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
+                // $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
                 $data = [
                     'first_name' => $client->first_name,
                     'last_name' => $client->last_name,
@@ -142,19 +140,23 @@ class TicketController extends Controller
                     'name_of_ticket' => $client->name_of_ticket,
                     'ticket_cost' => $client->ticket_cost,
                 ];
-                $this->generatePDF($data, $client->phone);
-                $filePath = public_path($client->phone.'.pdf');
                 if ($client->name_of_ticket == "Advance Early Bird Ticket") {
+                    $this->generatePDF($data, $client->phone, 'mail.tickets.early');
+                    $filePath = public_path($client->phone.'.pdf');
                     Mail::to($this->primary_email)
                         ->cc($client->email)
                         ->send(new sendEarlyTicket($data, $filePath));
                 }
                 if ($client->name_of_ticket == "Advance Regular Ticket") {
+                    $this->generatePDF($data, $client->phone, 'mail.tickets.regular');
+                    $filePath = public_path($client->phone.'.pdf');
                     Mail::to($this->primary_email)
                         ->cc($client->email)
                         ->send(new sendRegularTicket($client, $filePath));
                 }
                 if ($client->name_of_ticket == "Advance Group Ticket") {
+                    $this->generatePDF($data, $client->phone, 'mail.tickets.group');
+                    $filePath = public_path($client->phone.'.pdf');
                     Mail::to($this->primary_email)
                         ->cc($client->email)
                         ->send(new sendGroupTicket($client, $filePath));
@@ -217,9 +219,9 @@ class TicketController extends Controller
     //         }
     //     }
     // }
-    public function generatePDF($data, $phone)
+    public function generatePDF($data, $phone, $view)
     {
-        $pdf = PDF::loadView('mail.email', $data)->setPaper([0, 0, 300, 516], 'portrait');
+        $pdf = PDF::loadView($view, $data)->setPaper([0, 0, 300, 516], 'portrait');
         $pdf->render();
         file_put_contents($phone.'.pdf', $pdf->output());
     }
