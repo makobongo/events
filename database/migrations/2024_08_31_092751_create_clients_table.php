@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('second_name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('sha_phone')->nullable();
             $table->integer('number_of_ticket')->nullable();
             $table->string('name_of_ticket')->nullable();
             $table->integer('ticket_cost')->nullable();
