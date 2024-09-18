@@ -15,7 +15,7 @@ class PricesTableSeeder extends Seeder
     {
         $prices = [
             [
-                'name'  => 'Advance Early Bird Ticket<br/><button style="background-color: red;font-size: 14px;border-radius: 13px;"><strong>Sold Out</strong></button>',
+                'name'  => 'Advance Early Bird Ticket',
                 'price' => 1366
             ],
             [
