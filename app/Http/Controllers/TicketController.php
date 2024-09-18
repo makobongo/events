@@ -131,6 +131,8 @@ class TicketController extends Controller
             $client = Payment::join('clients', 'payments.MSISDN', '=', 'clients.sha_phone')
                 ->select('clients.*', 'payments.TransAmount')
                 ->orderBy('payments.created_at', 'DESC')->first();
+            //Sending SMS to clients
+            $this->sendSms($client->phone, $client->first_name, $client->ticket_cost);
             $data = [
                 'first_name' => $client->first_name,
                 'last_name' => $client->last_name,
@@ -253,7 +255,7 @@ class TicketController extends Controller
         ])->json();
     }
 
-    public function sendSms()
+    public function sendSms($phone, $firstname, $amount)
     {
         // Set your app credentials
         $username   = env('AFRICAISTALKING_USERNAME');
@@ -267,10 +269,10 @@ class TicketController extends Controller
 
         // Set the numbers you want to send to in international format
         // $recipients = "+254711XXXYYY,+254733YYYZZZ";
-        $recipients = +254715096287;
+        $recipients = $phone;
 
         // Set your message
-        $message    = "sixx spirits testing";
+        $message = "Hello, ".$firstname." We confirm receipt of Ksh ".$amount. " which has been paid to ".env("APP_NAME") ." Regards ";
 
         // Set your shortCode or senderId
         $from       = env('SMS_FROM');
