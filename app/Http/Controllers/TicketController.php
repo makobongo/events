@@ -149,10 +149,10 @@ class TicketController extends Controller
                 }
                 if ($client->name_of_ticket == "Advance Regular Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.regular');
-                    $filePath = storage_path($client->phone.'.pdf');
+                    $fileName = $client->phone.'.pdf';
                     Mail::to($this->primary_email)
                         ->cc($client->email)
-                        ->send(new sendRegularTicket($client, $filePath));
+                        ->send(new sendRegularTicket($client, $fileName));
                 }
                 if ($client->name_of_ticket == "Advance Group Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.group');
@@ -223,7 +223,8 @@ class TicketController extends Controller
     {
         $pdf = PDF::loadView($view, $data)->setPaper([0, 0, 300, 516], 'portrait');
         $pdf->render();
-        file_put_contents($phone.'.pdf', $pdf->output());
+        Storage::disk('local')->put($phone.'.pdf', $pdf->output());
+        // file_put_contents($phone.'.pdf', $pdf->output());
     }
 
     public function stkPush()
