@@ -57,7 +57,7 @@ class sendRegularTicket extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromStorage('app/'.$this->attachedFile),
+            Attachment::fromStorage($this->attachedFile),
         ];
     }
 }
