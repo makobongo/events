@@ -131,7 +131,7 @@ class TicketController extends Controller
                     ->select('clients.*', 'payments.TransAmount')
                     ->orderBy('payments.created_at', 'DESC')->first();
                 //Sending SMS to clients
-                // $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
+                $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
                 $data = [
                     'first_name' => $client->first_name,
                     'last_name' => $client->last_name,
@@ -142,24 +142,24 @@ class TicketController extends Controller
                 ];
                 if ($client->name_of_ticket == "Advance Early Bird Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.early');
-                    $filePath = public_path($client->phone.'.pdf');
+                    $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
                         ->cc($client->email)
-                        ->send(new sendEarlyTicket($data, $filePath));
+                        ->send(new sendEarlyTicket($client, $fileName));
                 }
                 if ($client->name_of_ticket == "Advance Regular Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.regular');
-                    $fileName = $client->phone.'.pdf';
+                    $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
                         ->cc($client->email)
                         ->send(new sendRegularTicket($client, $fileName));
                 }
                 if ($client->name_of_ticket == "Advance Group Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.group');
-                    $filePath = public_path($client->phone.'.pdf');
+                    $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
                         ->cc($client->email)
-                        ->send(new sendGroupTicket($client, $filePath));
+                        ->send(new sendGroupTicket($client, $fileName));
                 }
             } catch (\Exception $e) {
                 return $e->getMessage();
@@ -223,7 +223,7 @@ class TicketController extends Controller
     {
         $pdf = PDF::loadView($view, $data)->setPaper([0, 0, 300, 516], 'portrait');
         $pdf->render();
-        Storage::disk('local')->put($phone.'.pdf', $pdf->output());
+        Storage::disk('local')->put($phone . '.pdf', $pdf->output());
         // file_put_contents($phone.'.pdf', $pdf->output());
     }
 
