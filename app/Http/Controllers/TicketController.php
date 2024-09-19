@@ -149,7 +149,7 @@ class TicketController extends Controller
                 }
                 if ($client->name_of_ticket == "Advance Regular Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.regular');
-                    $filePath = public_path($client->phone.'.pdf');
+                    $filePath = storage_path($client->phone.'.pdf');
                     Mail::to($this->primary_email)
                         ->cc($client->email)
                         ->send(new sendRegularTicket($client, $filePath));
