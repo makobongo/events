@@ -44,7 +44,7 @@ class sendEarlyTicket extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.tickets.early',
+            view: 'mail.tickets.regular',
             with: ['first_name' => $this->client['first_name'],'last_name' => $this->client['last_name'],'number_of_ticket' => $this->client['number_of_ticket'],'ticket_cost' => $this->client['ticket_cost'],'phone' => $this->client['phone']],
         );
     }
@@ -57,7 +57,7 @@ class sendEarlyTicket extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath($this->attachedFile),
+            Attachment::fromStorage($this->attachedFile),
         ];
     }
 }
