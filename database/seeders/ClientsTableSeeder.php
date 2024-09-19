@@ -22,7 +22,7 @@ class ClientsTableSeeder extends Seeder
             'phone' => 254715096287,
             'sha_phone'=>'988caf8d9f287296ce58e6b62c0c56a511a5d65a450cee4c0e95765da8da1df6',
             'number_of_ticket' => 1,
-            'name_of_ticket' => 'Advance Regular Ticket',
+            'name_of_ticket' => 'Advance Early Bird Ticket',
             'ticket_cost' => 1500,
             'is_valid' => $faker->randomElement([false, true])
         ]);
