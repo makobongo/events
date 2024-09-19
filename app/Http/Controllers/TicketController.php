@@ -144,21 +144,21 @@ class TicketController extends Controller
                     $this->generatePDF($data, $client->phone, 'mail.tickets.early');
                     $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
-                        ->cc($client->email)
+                        ->cc([$client->email,'sixxsocial@sixx-spirits.com'])
                         ->send(new sendEarlyTicket($client, $fileName));
                 }
                 if ($client->name_of_ticket == "Advance Regular Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.regular');
                     $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
-                        ->cc($client->email)
+                        ->cc([$client->email,'sixxsocial@sixx-spirits.com'])
                         ->send(new sendRegularTicket($client, $fileName));
                 }
                 if ($client->name_of_ticket == "Advance Group Ticket") {
                     $this->generatePDF($data, $client->phone, 'mail.tickets.group');
                     $fileName = $client->phone . '.pdf';
                     Mail::to($this->primary_email)
-                        ->cc($client->email)
+                        ->cc([$client->email,'sixxsocial@sixx-spirits.com'])
                         ->send(new sendGroupTicket($client, $fileName));
                 }
             } catch (\Exception $e) {
