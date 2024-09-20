@@ -134,7 +134,7 @@ class TicketController extends Controller
                 $this->sendSms($client->phone, $client->first_name, $client->TransAmount);
                 $data = [
                     'first_name' => $client->first_name,
-                    'last_name' => $client->last_name,
+                    'last_name' => $client->second_name,
                     'phone' => $client->phone,
                     'number_of_ticket' => $client->number_of_ticket,
                     'name_of_ticket' => $client->name_of_ticket,
