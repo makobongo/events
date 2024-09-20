@@ -221,7 +221,7 @@ class TicketController extends Controller
     // }
     public function generatePDF($data, $phone, $view)
     {
-        $pdf = PDF::loadView($view, $data)->setPaper([0, 0, 300, 516], 'portrait');
+        $pdf = PDF::loadView($view, $data)->setPaper([0, 0, 300, 513], 'portrait');
         $pdf->render();
         Storage::disk('local')->put($phone . '.pdf', $pdf->output());
         // file_put_contents($phone.'.pdf', $pdf->output());
