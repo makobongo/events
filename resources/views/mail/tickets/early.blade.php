@@ -10,16 +10,17 @@
             background-repeat: no-repeat;
             width: 100%;
             height: 74%;
-            border: 2px solid;
-            color: pink;
+            border: 1px solid black;
+            /* color: pink; */
         }
     </style>
 </head>
 <body>
     <div class="backg">
-        <div style="text-align:center;margin-top:60%;">
+        <div style="text-align:center;margin-top:48.5%;">
+            <h4 style="color:black;margin-left:20px;">&nbsp;{{ $first_name }} {{$last_name}}</h4>
         <img
-            src="data:image/png;base64, {{ base64_encode(QrCode::size(140)->backgroundColor(255, 255, 255)->color(0, 0, 0)->margin(1)->generate('Ticket No: '.$number_of_ticket.' Ticket Cost: '.$ticket_cost.' Phone No: '.$phone)) }} ">
+            src="data:image/png;base64, {{ base64_encode(QrCode::size(140)->backgroundColor(255, 255, 255)->color(0, 0, 0)->margin(1)->generate('Number of Tickets Purchased: '.$number_of_ticket.' Total Ticket Cost: '.$ticket_cost.' Phone Number: '.$phone)) }} ">
     </div>
     </div>
 </body>
