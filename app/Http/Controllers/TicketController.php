@@ -231,7 +231,11 @@ class TicketController extends Controller
     {
         // Format the phone number to Intl format
         $phone = sprintf('254%s', substr(request()->phone, 1, 9));
-        // $price = (float)request()->ticket_price * (int)request()->number_of_tickets;
+        //price
+        $ticket = explode(',', request()->ticket);
+        $cost_of_a_ticket = (int) $ticket[0];
+        $number_of_tickets = request()->number_of_tickets;
+        $ticket_cost = $cost_of_a_ticket * $number_of_tickets;
         // Generate an access token
         $accessToken = $this->generateAccesstoken();
         // Build the URL for the lnmo endpoint
@@ -252,7 +256,7 @@ class TicketController extends Controller
             'Password' => $password,
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerPayBillOnline',
-            'Amount' => 1,
+            'Amount' => $ticket_cost,
             'PartyA' => $phone,
             'PartyB' => $shortcode,
             'PhoneNumber' => $phone,
