@@ -9,10 +9,16 @@
       @csrf
       <div class="form-row justify-content-center">
         <div class="col-auto">
-          <input type="text" class="form-control" name="email" placeholder="Enter your Email">
+          <input type="text" class="form-control" name="email" placeholder="Enter your Email" >
+          @if($errors->has('email'))
+          <div class="error" style="color:#FFFF00">{{ $errors->first('email') }}</div>
+          @endif
         </div>
         <div class="col-auto">
-          <input type="text" class="form-control" name="phone" placeholder="Phone e.g. 07........">
+          <input type="number" class="form-control" name="phone" placeholder="Phone e.g. 07........" >
+          @if($errors->has('phone'))
+          <div class="error" style="color:#FFFF00">{{ $errors->first('phone') }}</div>
+          @endif
         </div>
         <div class="col-auto">
           <button type="submit">Subscribe</button>
