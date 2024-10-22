@@ -31,9 +31,9 @@ Route::post('confirmation', [TicketController::class, 'mpesaConfirmation']);
 Route::post('validation', [TicketController::class, 'mpesaValidation']);
 Route::get('test', function(){
    // return bcrypt('password');
-   // $sha_phone = Hash::make(254715096287);
+   // $sha_phone = Hash::make(254716667121);
    // return $sha_phone;
-   return hash('sha256', 254715096287);
+   return hash('sha256', 254716667121);
 });
 Route::post('/subscriber', [SubscriberController::class, 'subscribe'])->name('event.subscriber');
 // Auth::routes();
