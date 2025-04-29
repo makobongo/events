@@ -19,7 +19,7 @@
   <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/style2.css') }}" rel="stylesheet">
 </head>
 
 <body>

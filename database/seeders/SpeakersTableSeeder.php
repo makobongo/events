@@ -17,24 +17,24 @@ class SpeakersTableSeeder extends Seeder
         $faker = Factory::create();
         $speakers = [
             [
-                'name'              => 'Dj nas',
-                'description'       => 'Quas alias incidunt',
+                'name'              => 'DJ BADMAN KIM',
+                'description'       => '@djbadmankim',
                 'twitter'           => '#',
                 'facebook'          => '#',
                 'linkedin'          => '#',
                 'full_description'  => $faker->paragraph
             ],
             [
-                'name'              => 'Dj b',
-                'description'       => 'Consequuntur odio aut',
+                'name'              => 'DJ KYLE',
+                'description'       => '@djkyle',
                 'twitter'           => '#',
                 'facebook'          => '#',
                 'linkedin'          => '#',
                 'full_description'  => $faker->paragraph
             ],
             [
-                'name'              => 'Dj william',
-                'description'       => 'Fugiat laborum et',
+                'name'              => 'DJ MOBY',
+                'description'       => '@djmoby',
                 'twitter'           => '#',
                 'facebook'          => '#',
                 'linkedin'          => '#',

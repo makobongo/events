@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             AmenityPriceTableSeeder::class,
             GalleriesTableSeeder::class,
             SponsorsTableSeeder::class,
-            PaymentsTableSeeder::class,
+            // PaymentsTableSeeder::class,
             HotelsTableSeeder::class,
             SettingsTableSeeder::class,
             FaqsTableSeeder::class,

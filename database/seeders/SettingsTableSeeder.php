@@ -20,23 +20,23 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'subtitle',
-                'value' => '6IXX Quarry, Nairobi'
+                'value' => 'Coopers Ring ASK Show Ground'
             ],
             [
                 'key'   => 'youtube_link',
-                'value' => 'https://www.youtube.com/watch?v=vdwI2iKqV-U&pp=ygUVYWZyaWNhbiBhbGNvaG9sIHBhcnR5'
+                'value' => '#'
             ],
             [
                 'key'   => 'about_description',
-                'value' => env('APP_NAME').' event'
+                'value' => '<strong style="color: yellow;">'.env('APP_NAME').'</strong> a place to meet up and enjoy the company of good friends'
             ],
             [
                 'key'   => 'about_where',
-                'value' => '6IXX Quarry'
+                'value' => 'Coopers Ring ASK Show Ground'
             ],
             [
                 'key'   => 'about_when',
-                'value' => 'Monday to Wednesday<br> December'
+                'value' => '14th September 2024'
             ],
             [
                 'key'   => 'contact_address',
@@ -52,7 +52,7 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_description',
-                'value' => 'In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.'
+                'value' => '<strong style="color: yellow;">'.env('APP_NAME').'</strong> a place to meet up and enjoy the company of good friends.'
             ],
             [
                 'key'   => 'footer_address',
@@ -60,11 +60,11 @@ class SettingsTableSeeder extends Seeder
             ],
             [
                 'key'   => 'footer_twitter',
-                'value' => '#'
+                'value' => 'https://x.com/sixx6spirits'
             ],
             [
                 'key'   => 'footer_facebook',
-                'value' => '#'
+                'value' => 'https://www.facebook.com/profile.php?id=61553678562291'
             ],
             [
                 'key'   => 'footer_instagram',

@@ -3,7 +3,7 @@
 
     <div class="section-header">
       <h2>Buy Tickets</h2>
-      <p>Buy tickets for the {{ env('APP_NAME') }} event</p>
+      <p>Buy tickets for the <span style="color:#FFC300;">{{ env('APP_NAME') }}</span> event</p>
     </div>
 
     <div class="row">
@@ -11,19 +11,25 @@
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">{{ $price->name }}</h5>
+            <h5 class="card-title text-muted text-uppercase text-center">
+              @if($price->name == 'Advance Early Bird Ticket')
+              <button style="background-color: red;color:black;">sold out</button>
+              @endif
+              {!! $price->name !!}
+            </h5>
             <h6 class="card-price text-center">Ksh {{ number_format($price->price) }}</h6>
             <hr>
             <ul class="fa-ul">
               @foreach($amenities as $amenity)
               <li @if(!$price->amenities->contains($amenity->id))class="text-muted"@endif>
-                <span class="fa-li"><i class="fa fa-{{ $price->amenities->contains($amenity->id) ? 'check' : 'times' }}"></i></span>{{ $amenity->name }}
+                <span class="fa-li"><i class="fa fa-{{ $price->amenities->contains($amenity->id) ? 'check' : 'times' }}"></i></span>{!! $amenity->name !!}
               </li>
               @endforeach
             </ul>
             <hr>
             <div class="text-center">
               <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="">Buy Now</button>
+               <!-- <a href="https://sixxspirits.hustlesasa.shop" class="btn" target="_blank">buy ticket</a> -->
             </div>
           </div>
         </div>
@@ -83,7 +89,7 @@
                 <select id="ticket-type" name="ticket" class="form-control" required>
                   <option value="">-- Select Your Ticket Type --</option>
                   @foreach($prices as $price)
-                  <option value="{{ $price->price }},{{ $price->name }}">{{ $price->name }}</option>
+                  <option value="{{ $price->price }},{{ $price->name }}">{!! $price->name !!}</option>
                   @endforeach
                 </select>
               </div>
