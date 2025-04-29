@@ -11,7 +11,7 @@
           <ul id="faq-list">
             @foreach($faqs as $faq)
               <li>
-                <a data-toggle="collapse" class="collapsed" href="#faq{{ $faq->id }}">{{ $faq->question }} <i class="fa fa-minus-circle"></i></a>
+                <a data-toggle="collapse" class="collapsed" href="#faq{{ $faq->id }}">{!! $faq->question !!} <i class="fa fa-minus-circle"></i></a>
                 <div id="faq{{ $faq->id }}" class="collapse" data-parent="#faq-list">
                   <p>
                     {{ $faq->answer }}

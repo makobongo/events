@@ -14,11 +14,11 @@ class VenuesTableSeeder extends Seeder
     public function run()
     {
         $venue = Venue::create([
-            'name'          => 'Downtown Conference Center, Nairobi',
-            'address'       => '00100 Nairobi Off Mombasa road',
-            'latitude'      => '-1.3155358296492337',
-            'longitude'     => '36.918241038449764',
-            'description'   =>  'Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.'
+            'name'          => 'Coopers Ring ASK Show Ground',
+            'address'       => '00100 Nairobi',
+            'latitude'      => '-1.308495',
+            'longitude'     => '36.766970',
+            'description'   =>  '14th September 2024'
         ]);
     }
 }

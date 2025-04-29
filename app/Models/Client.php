@@ -21,6 +21,7 @@ class Client extends Model
         'second_name',
         'email',
         'phone',
+        'sha_phone',
         'number_of_ticket',
         'name_of_ticket',
         'ticket_cost',

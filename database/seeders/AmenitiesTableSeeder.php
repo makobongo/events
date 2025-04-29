@@ -15,22 +15,28 @@ class AmenitiesTableSeeder extends Seeder
     {
         $amenities = [
             [
-                'name' => 'Regular Seating'
+                'name' => 'Regular Entry for Over 18 years'
             ],
             [
-                'name' => 'Coffee Break'
+                'name' => 'Music and Entertainment'
             ],
             [
-                'name' => 'Custom Badge'
+                'name' => 'Terms and Conditions Apply'
             ],
             [
-                'name' => 'Community Access'
+                'name' => '22.65% discount off Regular Ticket'
             ],
             [
-                'name' => 'Workshop Access'
+                'name' => '3 Free Shots from 3- SIXX pm, while the stocks last.'
             ],
             [
-                'name' => 'After Party'
+                'name' => 'Covers 4 people.'
+            ],
+            [
+                'name' => 'Price for online tickets only. Gate price is KSH 2166 per person'
+            ],
+            [
+                'name' => '1 Bottle of <span style="color:#FFC300;">'.env('APP_NAME').'</span> Alcoholic Spirit, while the stocks last.'
             ],
         ];
 
