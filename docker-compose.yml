@@ -1,5 +1,5 @@
 services:
-    #PHP Service
+    # PHP Service
     php:
         container_name: php
         build:
@@ -23,9 +23,11 @@ services:
     database:   
         container_name: database
         image: mysql:8.0
+        restart: unless-stopped
         ports:  
             - 3306:3306
         environment:
+            - MYSQL_ROOT_HOST=${DB_HOST}
             - MYSQL_DATABASE=${DB_DATABASE}
             - MYSQL_USER=${DB_USERNAME}
             - MYSQL_PASSWORD=${DB_PASSWORD}
