@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ ! -f "vendor/autoload.php" ]; then
-    composer install --no-progress --no-interaction --ignore-platform-reqs
-fi
-
 if [ ! -f ".env" ]; then
     echo "creating env file."
     cp .env.example .env
@@ -11,7 +7,10 @@ else
     echo "env file already exists"
 fi
 
-php artisan migrate
+composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+chmod -R 777 storage bootstrap/cache
+php artisan migrate --seed
 php artisan key:generate
 php artisan cache:clear
 php artisan config:clear
